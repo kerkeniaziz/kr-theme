@@ -35,33 +35,27 @@ function kr_theme_register_required_plugins() {
 	 */
 	$plugins = array(
 
+		 // KR Toolkit - Pull directly from GitHub repository
+		array(
+			'name'               => 'KR Toolkit',
+			'slug'               => 'kr-toolkit',
+			'source'             => 'https://github.com/kerkeniaziz/kr-toolkit/archive/refs/heads/main.zip',
+			'required'           => true,
+			'version'            => '1.2.4',
+			'force_activation'   => false,
+			'force_deactivation' => false,
+			'external_url'       => 'https://github.com/kerkeniaziz/kr-toolkit',
+		),
+
 		// Elementor - Required page builder
 		array(
 			'name'     => 'Elementor Page Builder',
 			'slug'     => 'elementor',
-			'required' => true,
+			'required' => false, // Changed to false - let users choose
 			'version'  => '3.16.0',
 		),
 
-		// Ultimate Addons for Elementor (Free version)
-		array(
-			'name'     => 'Ultimate Addons for Elementor',
-			'slug'     => 'ultimate-elementor',
-			'required' => true,
-		),
-
-		// KR Toolkit - Bundled with theme (load from theme directory)
-		array(
-			'name'               => 'KR Toolkit',
-			'slug'               => 'kr-toolkit',
-			'source'             => get_template_directory() . '/inc/plugins/kr-toolkit.zip',
-			'required'           => true,
-			'version'            => '1.0.0',
-			'force_activation'   => false,
-			'force_deactivation' => false,
-		),
-
-		// WooCommerce - Optional but recommended for e-commerce sites
+		// WooCommerce - Optional for e-commerce sites
 		array(
 			'name'     => 'WooCommerce',
 			'slug'     => 'woocommerce',
@@ -92,7 +86,7 @@ function kr_theme_register_required_plugins() {
 		'is_automatic' => false,
 		'message'      => '',
 		'strings'      => array(
-			'page_title'                      => __( 'Install Required Plugins', 'kr-theme' ),
+			'page_title'                      => __( 'Install Recommended Plugins', 'kr-theme' ),
 			'menu_title'                      => __( 'Install Plugins', 'kr-theme' ),
 			'installing'                      => __( 'Installing Plugin: %s', 'kr-theme' ),
 			'updating'                        => __( 'Updating Plugin: %s', 'kr-theme' ),
