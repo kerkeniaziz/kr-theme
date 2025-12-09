@@ -7,7 +7,7 @@
  * @package KR_Theme
  * @author Aziz Kerkeni
  * @link https://www.kerkeniaziz.ovh/
- * @since 1.3.0
+ * @since 1.3.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
