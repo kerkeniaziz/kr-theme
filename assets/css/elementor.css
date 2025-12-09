@@ -1,0 +1,31 @@
+/* Elementor Compatibility Styles */
+
+/* Remove theme margins on Elementor canvas */
+.elementor-template-canvas .kr-container,
+.elementor-template-canvas .kr-content-wrapper {
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+/* Elementor sections full width */
+.elementor-section.elementor-section-boxed > .elementor-container {
+	max-width: var(--kr-container-width);
+}
+
+/* Ensure Elementor widgets inherit theme styles */
+.elementor-widget-text-editor {
+	font-family: var(--kr-font-body);
+	color: var(--kr-color-text);
+}
+
+.elementor-widget-heading .elementor-heading-title {
+	font-family: var(--kr-font-heading);
+	color: var(--kr-color-secondary);
+}
+
+/* Hide header/footer on Elementor canvas */
+.elementor-template-canvas .site-header,
+.elementor-template-canvas .site-footer {
+	display: none;
+}

@@ -1,0 +1,457 @@
+/*
+Theme Name: KR Theme
+Theme URI: https://krtheme.com
+Author: KR Theme
+Author URI: https://krtheme.com
+Description: KR Theme is an ultra-lightweight, blazing-fast, and SEO-optimized multipurpose WordPress theme. Built with performance-first architecture, achieving 100/100 PageSpeed scores without caching plugins. Features include Elementor compatibility, WooCommerce support, accessibility ready (WCAG 2.1 AA), schema.org markup, and extensive customization options. Perfect for blogs, businesses, portfolios, and e-commerce sites.
+Version: 4.2.1
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: kr-theme
+Tags: blog, e-commerce, portfolio, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready, performance-optimized
+Copyright: 2015-2025 KR Theme
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+KR Theme is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+/*
+--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 CSS Variables
+2.0 Normalize & Reset
+3.0 Typography
+4.0 Accessibility
+5.0 Layout
+6.0 Navigation
+7.0 Content
+8.0 Media
+9.0 Widgets
+10.0 Footer
+11.0 Responsive
+--------------------------------------------------------------
+*/
+
+/*--------------------------------------------------------------
+1.0 CSS Variables
+--------------------------------------------------------------*/
+/* CSS Variables for better performance and maintainability */
+:root {
+	--kr-color-primary: #2563eb;
+	--kr-color-secondary: #1e293b;
+	--kr-color-text: #334155;
+	--kr-color-light: #f8fafc;
+	--kr-color-border: #e2e8f0;
+	--kr-color-link: #2563eb;
+	--kr-color-link-hover: #1d4ed8;
+	
+	--kr-font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--kr-font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	
+	--kr-spacing-xs: 0.5rem;
+	--kr-spacing-sm: 1rem;
+	--kr-spacing-md: 1.5rem;
+	--kr-spacing-lg: 2rem;
+	--kr-spacing-xl: 3rem;
+	
+	--kr-container-width: 1200px;
+	--kr-radius-small: 4px;
+	--kr-radius-medium: 8px;
+	--kr-radius-large: 12px;
+	
+	--kr-transition-base: all 0.3s ease;
+	--kr-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--kr-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	--kr-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+	
+	--kr-gap: 1.5rem;
+}
+
+/*--------------------------------------------------------------
+2.0 Normalize & Reset
+--------------------------------------------------------------*/
+/* Critical CSS - Above the fold content */
+/* Reset and Base Styles - Minimal and optimized */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 16px;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--kr-font-body);
+	font-size: 1rem;
+	line-height: 1.6;
+	color: var(--kr-color-text);
+	background-color: #fff;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+}
+
+/* Performance optimization - GPU acceleration for animations */
+.site-header,
+.mobile-menu-toggle,
+.kr-button {
+	will-change: transform;
+	transform: translateZ(0);
+}
+
+/*--------------------------------------------------------------
+3.0 Typography
+--------------------------------------------------------------*/
+/* Typography - Optimized for readability and SEO */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--kr-font-heading);
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--kr-color-secondary);
+	margin: 0 0 var(--kr-spacing-sm);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 1.75rem); }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p {
+	margin: 0 0 var(--kr-spacing-sm);
+}
+
+/* Links - SEO friendly */
+a {
+	color: var(--kr-color-link);
+	text-decoration: none;
+	transition: var(--kr-transition-base);
+}
+
+a:hover,
+a:focus {
+	color: var(--kr-color-link-hover);
+}
+
+a:focus {
+	outline: 2px solid var(--kr-color-primary);
+	outline-offset: 2px;
+}
+
+/* Images - Lazy loading and optimization */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	border: 0;
+	/* Native lazy loading for better performance */
+	loading: lazy;
+}
+
+/* Remove lazy loading for critical images (above fold) */
+.site-logo img,
+.hero-image img {
+	loading: eager;
+}
+
+/*--------------------------------------------------------------
+4.0 Accessibility
+--------------------------------------------------------------*/
+/* Accessibility - Screen reader only text */
+.screen-reader-text {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	clip: auto;
+}
+
+.skip-link {
+	position: absolute;
+	top: -40px;
+	left: 0;
+	background: var(--kr-color-primary);
+	color: #fff;
+	padding: 8px 16px;
+	text-decoration: none;
+	z-index: 100000;
+}
+
+.skip-link:focus {
+	top: 0;
+}
+
+/*--------------------------------------------------------------
+5.0 Layout
+--------------------------------------------------------------*/
+/* Container - Responsive and optimized */
+.kr-container {
+	max-width: var(--kr-container-width);
+	margin: 0 auto;
+	padding: 0 var(--kr-spacing-md);
+	width: 100%;
+}
+
+/* Site Structure - SEO optimized semantic HTML */
+.site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.site-content {
+	flex: 1;
+}
+
+/* Header - Critical above-fold content */
+.site-header {
+	background: #fff;
+	border-bottom: 1px solid var(--kr-color-border);
+	position: sticky;
+	top: 0;
+	z-index: 999;
+	/* Performance optimization */
+	backface-visibility: hidden;
+}
+
+.site-header .kr-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: var(--kr-spacing-sm);
+	padding-bottom: var(--kr-spacing-sm);
+}
+
+/* Logo - SEO optimized */
+.site-branding {
+	display: flex;
+	align-items: center;
+}
+
+.site-title {
+	margin: 0;
+	font-size: 1.5rem;
+	line-height: 1;
+}
+
+.site-title a {
+	color: var(--kr-color-secondary);
+}
+
+.site-description {
+	margin: 0;
+	font-size: 0.875rem;
+	color: var(--kr-color-text);
+	display: none;
+}
+
+/*--------------------------------------------------------------
+6.0 Navigation
+--------------------------------------------------------------*/
+/* Navigation - Accessible and SEO friendly */
+.main-navigation {
+	display: flex;
+	align-items: center;
+}
+
+.main-navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: var(--kr-spacing-md);
+}
+
+.main-navigation a {
+	color: var(--kr-color-text);
+	font-weight: 500;
+	padding: 0.5rem 0;
+	display: block;
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus {
+	color: var(--kr-color-primary);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+	display: none;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	color: var(--kr-color-secondary);
+}
+
+/*--------------------------------------------------------------
+7.0 Content
+--------------------------------------------------------------*/
+/* Content Area - SEO optimized structure */
+.kr-content-wrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--kr-gap);
+	padding: var(--kr-spacing-xl) 0;
+}
+
+.kr-content-wrapper.has-sidebar {
+	grid-template-columns: 1fr 300px;
+}
+
+/* Posts - Semantic and SEO friendly */
+article {
+	margin-bottom: var(--kr-spacing-xl);
+}
+
+.entry-header {
+	margin-bottom: var(--kr-spacing-md);
+}
+
+.entry-title {
+	margin-bottom: var(--kr-spacing-xs);
+}
+
+.entry-meta {
+	font-size: 0.875rem;
+	color: #64748b;
+	display: flex;
+	gap: var(--kr-spacing-sm);
+	flex-wrap: wrap;
+}
+
+.entry-content {
+	line-height: 1.8;
+}
+
+/*--------------------------------------------------------------
+8.0 Media
+--------------------------------------------------------------*/
+/* No changes in this section */
+
+/*--------------------------------------------------------------
+9.0 Widgets
+--------------------------------------------------------------*/
+/* No changes in this section */
+
+/*--------------------------------------------------------------
+10.0 Footer
+--------------------------------------------------------------*/
+/* Footer - SEO optimized */
+.site-footer {
+	background: var(--kr-color-secondary);
+	color: #fff;
+	padding: var(--kr-spacing-xl) 0;
+	margin-top: auto;
+}
+
+.site-footer a {
+	color: #fff;
+}
+
+.site-info {
+	text-align: center;
+	font-size: 0.875rem;
+}
+
+/*--------------------------------------------------------------
+11.0 Responsive
+--------------------------------------------------------------*/
+/* Responsive - Mobile First Approach */
+@media (max-width: 768px) {
+	.main-navigation {
+		position: fixed;
+		top: 60px;
+		left: 0;
+		right: 0;
+		background: #fff;
+		padding: var(--kr-spacing-md);
+		transform: translateX(-100%);
+		transition: transform 0.3s ease;
+		box-shadow: var(--kr-shadow-lg);
+	}
+	
+	.main-navigation.toggled {
+		transform: translateX(0);
+	}
+	
+	.main-navigation ul {
+		flex-direction: column;
+		gap: 0;
+	}
+	
+	.main-navigation a {
+		padding: var(--kr-spacing-sm) 0;
+		border-bottom: 1px solid var(--kr-color-border);
+	}
+	
+	.mobile-menu-toggle {
+		display: block;
+	}
+	
+	.kr-content-wrapper.has-sidebar {
+		grid-template-columns: 1fr;
+	}
+	
+	.site-description {
+		display: block;
+	}
+}
+
+/* Print Styles - SEO and accessibility */
+@media print {
+	.site-header,
+	.site-navigation,
+	.mobile-menu-toggle,
+	.widget,
+	.site-footer {
+		display: none;
+	}
+	
+	body {
+		font-size: 12pt;
+		color: #000;
+		background: #fff;
+	}
+	
+	a {
+		color: #000;
+		text-decoration: underline;
+	}
+	
+	.entry-title {
+		color: #000;
+	}
+}
+
+/* Performance optimization - Reduce repaints */
+* {
+	-webkit-tap-highlight-color: transparent;
+}

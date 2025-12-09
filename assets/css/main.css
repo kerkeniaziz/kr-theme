@@ -1,0 +1,48 @@
+/* Additional theme styles - kept minimal for performance */
+
+/* Utility Classes */
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+/* Loading States */
+.loading {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+/* Keyboard Navigation Styles */
+body.keyboard-navigation *:focus {
+	outline: 2px solid var(--kr-color-primary);
+	outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+	.mobile-menu-toggle,
+	.site-navigation,
+	.widget,
+	.comments-area {
+		display: none;
+	}
+	
+	body {
+		font-size: 12pt;
+		color: #000;
+		background: #fff;
+	}
+}
