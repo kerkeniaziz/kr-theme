@@ -50,9 +50,9 @@ if ( ! class_exists( 'KR_Theme' ) ) {
 		/**
 		 * Define Constants
 		 */
-		private function define_constants() {
-			if ( ! defined( 'KR_THEME_VERSION' ) ) {
-				define( 'KR_THEME_VERSION', '1.3.0' );
+	private function define_constants() {
+		if ( ! defined( 'KR_THEME_VERSION' ) ) {
+			define( 'KR_THEME_VERSION', '1.3.1' );
 			}
 			if ( ! defined( 'KR_THEME_DIR' ) ) {
 				define( 'KR_THEME_DIR', get_template_directory() );
@@ -65,40 +65,31 @@ if ( ! class_exists( 'KR_Theme' ) ) {
 			}
 		}
 
-		/**
-		 * Include Files - Load in correct order
-		 */
-		private function includes() {
-			// Core files
-			$this->include_file( 'core/class-kr-theme-setup.php' );
-			$this->include_file( 'core/class-kr-enqueue.php' );
-			$this->include_file( 'core/class-kr-hooks.php' );
-			
-			// Customizer
-			$this->include_file( 'customizer/class-kr-customizer.php' );
-			
-			// Compatibility layers
-			$this->include_file( 'compatibility/class-kr-elementor.php' );
-			$this->include_file( 'compatibility/class-kr-woocommerce.php' );
-			$this->include_file( 'compatibility/class-kr-gutenberg.php' );
-			
-			// Markup and structure
-			$this->include_file( 'markup/class-kr-header.php' );
-			$this->include_file( 'markup/class-kr-footer.php' );
-			$this->include_file( 'markup/class-kr-content.php' );
-
-			// Admin (only in admin area)
-			if ( is_admin() ) {
-				$this->include_file( 'admin/class-kr-admin.php' );
-			}
-
-			// Load debug helper only when needed
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				$this->include_file( 'debug/class-kr-debug-helper.php' );
-			}
-		}
-
-		/**
+	/**
+	 * Include Files - Load in correct order
+	 */
+	private function includes() {
+		// Core functionality files
+		$this->include_file( 'theme-setup.php' );
+		$this->include_file( 'enqueue.php' );
+		$this->include_file( 'hooks.php' );
+		
+		// Customizer
+		$this->include_file( 'customizer/customizer.php' );
+		
+		// Compatibility layers
+		$this->include_file( 'compatibility/elementor.php' );
+		$this->include_file( 'compatibility/woocommerce.php' );
+		$this->include_file( 'compatibility/gutenberg.php' );
+		
+		// Markup and structure
+		$this->include_file( 'structure/header.php' );
+		$this->include_file( 'structure/footer.php' );
+		$this->include_file( 'structure/post.php' );
+		
+		// TGM Plugin Activation
+		$this->include_file( 'plugin-installer.php' );
+	}		/**
 		 * Safe file include with error handling
 		 *
 		 * @param string $file_path Relative path from inc/ directory
@@ -229,7 +220,7 @@ if ( ! class_exists( 'KR_Theme' ) ) {
 		/**
 		 * Prevent unserialization
 		 */
-		private function __wakeup() {}
+		public function __wakeup() {}
 	}
 }
 

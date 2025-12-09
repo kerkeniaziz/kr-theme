@@ -30,11 +30,3 @@ function kr_theme_init() {
  * Start the theme after WordPress loads
  */
 add_action( 'after_setup_theme', 'kr_theme_init', -1 );
-
-/**
- * Global function to access theme instance
- * Usage: kr_theme()->method_name()
- */
-function kr_theme() {
-	return KR_Theme();
-}

@@ -35,13 +35,14 @@ function kr_theme_register_required_plugins() {
 	 */
 	$plugins = array(
 
-		 // KR Toolkit - Pull directly from GitHub repository
+		// KR Toolkit - Install from GitHub releases
+		// Note: Users can also install manually from GitHub or via the auto-update system
 		array(
 			'name'               => 'KR Toolkit',
 			'slug'               => 'kr-toolkit',
-			'source'             => 'https://github.com/kerkeniaziz/kr-toolkit/archive/refs/heads/main.zip',
+			'source'             => 'https://github.com/kerkeniaziz/kr-toolkit/releases/latest/download/kr-toolkit.zip',
 			'required'           => true,
-			'version'            => '1.2.4',
+			'version'            => '1.2.6',
 			'force_activation'   => false,
 			'force_deactivation' => false,
 			'external_url'       => 'https://github.com/kerkeniaziz/kr-toolkit',
