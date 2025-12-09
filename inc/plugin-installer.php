@@ -42,7 +42,7 @@ function kr_theme_register_required_plugins() {
 			'slug'               => 'kr-toolkit',
 			'source'             => 'https://github.com/kerkeniaziz/kr-toolkit/releases/latest/download/kr-toolkit.zip',
 			'required'           => true,
-			'version'            => '1.2.6',
+			'version'            => '1.2.7',
 			'force_activation'   => false,
 			'force_deactivation' => false,
 			'external_url'       => 'https://github.com/kerkeniaziz/kr-toolkit',
@@ -52,8 +52,15 @@ function kr_theme_register_required_plugins() {
 		array(
 			'name'     => 'Elementor Page Builder',
 			'slug'     => 'elementor',
-			'required' => false, // Changed to false - let users choose
+			'required' => true,
 			'version'  => '3.16.0',
+		),
+
+		// Essential Addons for Elementor - 60+ Free Widgets
+		array(
+			'name'     => 'Essential Addons for Elementor',
+			'slug'     => 'essential-addons-for-elementor-lite',
+			'required' => true,
 		),
 
 		// WooCommerce - Optional for e-commerce sites

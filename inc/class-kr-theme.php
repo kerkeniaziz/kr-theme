@@ -52,7 +52,7 @@ if ( ! class_exists( 'KR_Theme' ) ) {
 		 */
 	private function define_constants() {
 		if ( ! defined( 'KR_THEME_VERSION' ) ) {
-			define( 'KR_THEME_VERSION', '1.3.1' );
+			define( 'KR_THEME_VERSION', '1.3.2' );
 			}
 			if ( ! defined( 'KR_THEME_DIR' ) ) {
 				define( 'KR_THEME_DIR', get_template_directory() );
@@ -73,6 +73,7 @@ if ( ! class_exists( 'KR_Theme' ) ) {
 		$this->include_file( 'theme-setup.php' );
 		$this->include_file( 'enqueue.php' );
 		$this->include_file( 'hooks.php' );
+		$this->include_file( 'markup.php' );
 		
 		// Customizer
 		$this->include_file( 'customizer/customizer.php' );

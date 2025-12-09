@@ -24,7 +24,11 @@ require_once KR_THEME_DIR . '/inc/customizer/controls.php';
 function kr_theme_customize_register( $wp_customize ) {
 	// Add postMessage support for site title and description
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-	$wp_customize->get_setting( 'blogdesc' )->transport = 'postMessage';
+	
+	$blogdesc_setting = $wp_customize->get_setting( 'blogdescription' );
+	if ( $blogdesc_setting ) {
+		$blogdesc_setting->transport = 'postMessage';
+	}
 	
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial(
