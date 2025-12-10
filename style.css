@@ -1,10 +1,10 @@
 /*
 Theme Name: KR Theme
 Theme URI: https://krtheme.com
-Author: KR Theme
+Author: krtheme.com
 Author URI: https://krtheme.com
 Description: KR Theme is an ultra-lightweight, blazing-fast, and SEO-optimized multipurpose WordPress theme. Built with performance-first architecture, achieving 100/100 PageSpeed scores without caching plugins. Features include Elementor compatibility, WooCommerce support, accessibility ready (WCAG 2.1 AA), schema.org markup, and extensive customization options. Perfect for blogs, businesses, portfolios, and e-commerce sites.
-Version: 1.3.2
+Version: 1.3.3
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
@@ -12,191 +12,373 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: kr-theme
 Tags: blog, e-commerce, portfolio, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready, performance-optimized
-Copyright: 2015-2025 KR Theme
+Copyright: 2015-2025 krtheme.com
 */
 
 /*--------------------------------------------------------------
->>> ULTRA-LIGHTWEIGHT CSS - OPTIMIZED FOR PERFORMANCE
+>>> SUPER LIGHT THEME - TT5 INSPIRED
 --------------------------------------------------------------*/
 
-/* CSS Variables - Minimal set for maximum performance */
+/* CSS Variables - Light & Modern */
 :root {
-	--primary: #3b82f6;
-	--secondary: #1e293b;
-	--text: #374151;
-	--text-light: #6b7280;
+	--primary: #667eea;
+	--secondary: #a855f7;
+	--text: #1e293b;
+	--text-light: #64748b;
 	--bg: #ffffff;
-	--bg-alt: #f9fafb;
-	--border: #e5e7eb;
-	--radius: 8px;
-	--shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-	--transition: all 0.2s ease;
+	--bg-light: #f8fafc;
+	--bg-lighter: #fafbfc;
+	--border: #e2e8f0;
+	--radius: 12px;
+	--shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+	--shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.08);
+	--transition: all 0.3s ease;
+	--container-width: 1200px;
+	--font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--spacing-xs: 0.5rem;
+	--spacing-sm: 1rem;
+	--spacing-md: 1.5rem;
+	--spacing-lg: 2rem;
+	--spacing-xl: 3rem;
+	--spacing-2xl: 4rem;
+	--spacing-3xl: 6rem;
 }
 
-/* Reset - Minimal and efficient */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-	font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-	color:var(--text);
-	background:var(--bg);
-	-webkit-font-smoothing:antialiased;
+/* Reset */
+*, *::before, *::after { 
+	box-sizing: border-box; 
+	margin: 0; 
+	padding: 0; 
 }
 
-/* Typography - Lightweight and scalable */
-h1,h2,h3,h4,h5,h6{
-	font-weight:700;
-	line-height:1.2;
-	color:var(--secondary);
-	margin-bottom:1rem;
-}
-h1{font-size:clamp(2rem,5vw,2.5rem)}
-h2{font-size:clamp(1.75rem,4vw,2rem)}
-h3{font-size:clamp(1.5rem,3vw,1.75rem)}
-h4{font-size:1.25rem}
-h5{font-size:1.125rem}
-h6{font-size:1rem}
-p{margin-bottom:1rem}
-a{color:var(--primary);text-decoration:none;transition:var(--transition)}
-a:hover{color:var(--secondary)}
-img{max-width:100%;height:auto;border:0}
-
-/* Layout - Minimal grid system */
-.container{max-width:1200px;margin:0 auto;padding:0 1rem}
-.site{display:flex;flex-direction:column;min-height:100vh}
-.content{flex:1}
-
-/* Header - Clean and sticky */
-.header{
-	background:var(--bg);
-	border-bottom:1px solid var(--border);
-	position:sticky;
-	top:0;
-	z-index:999;
-}
-.header .container{
-	display:flex;
-	align-items:center;
-	justify-content:space-between;
-	padding-top:1rem;
-	padding-bottom:1rem;
-}
-.logo{font-size:1.5rem;font-weight:700;color:var(--secondary)}
-.logo:hover{color:var(--primary)}
-
-/* Navigation - Responsive and accessible */
-.nav ul{display:flex;list-style:none;gap:2rem}
-.nav a{
-	color:var(--text);
-	font-weight:500;
-	padding:0.5rem 0;
-	position:relative;
-}
-.nav a:hover{color:var(--primary)}
-.nav a:focus{outline:2px solid var(--primary);outline-offset:2px}
-
-/* Mobile menu */
-.menu-toggle{
-	display:none;
-	background:none;
-	border:none;
-	font-size:1.5rem;
-	color:var(--secondary);
-	cursor:pointer;
+html { 
+	scroll-behavior: smooth; 
+	-webkit-text-size-adjust: 100%; 
 }
 
-/* Content areas */
-.main{padding:3rem 0}
-.content-area{display:grid;gap:2rem}
-.has-sidebar{grid-template-columns:1fr 300px}
-
-/* Posts and pages */
-.entry-header{margin-bottom:1.5rem}
-.entry-title{margin-bottom:0.5rem}
-.entry-meta{
-	font-size:0.875rem;
-	color:var(--text-light);
-	margin-bottom:1rem;
-}
-.entry-content{line-height:1.8}
-.entry-content h2{margin-top:2rem}
-
-/* Buttons - Clean and modern */
-.btn{
-	display:inline-block;
-	padding:0.75rem 1.5rem;
-	background:var(--primary);
-	color:white;
-	border-radius:var(--radius);
-	font-weight:500;
-	transition:var(--transition);
-	border:none;
-	cursor:pointer;
-}
-.btn:hover{background:var(--secondary);color:white}
-
-/* Cards - Minimal styling */
-.card{
-	background:var(--bg);
-	border:1px solid var(--border);
-	border-radius:var(--radius);
-	padding:1.5rem;
-	box-shadow:var(--shadow);
+body {
+	font-family: var(--font-base);
+	font-size: 1.125rem;
+	line-height: 1.7;
+	color: var(--text);
+	background: var(--bg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-/* Footer - Simple and clean */
-.footer{
-	background:var(--secondary);
-	color:white;
-	padding:2rem 0;
-	text-align:center;
-	margin-top:auto;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--text);
+	margin-bottom: var(--spacing-lg);
+	letter-spacing: -0.02em;
 }
-.footer a{color:white}
+h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+h3 { font-size: clamp(1.75rem, 3vw, 2.25rem); }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.125rem; }
 
-/* Utilities - Essential classes only */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-.text-center{text-align:center}
-.mb-0{margin-bottom:0}
-.mb-1{margin-bottom:1rem}
-.mb-2{margin-bottom:2rem}
+p { 
+	margin-bottom: var(--spacing-md);
+	line-height: 1.7;
+	color: var(--text-light);
+}
 
-/* Responsive - Mobile first */
-@media (max-width:768px) {
-	.nav{
-		position:fixed;
-		top:65px;
-		left:0;
-		right:0;
-		background:var(--bg);
-		padding:1rem;
-		transform:translateX(-100%);
-		transition:transform 0.3s ease;
-		box-shadow:var(--shadow);
+a { 
+	color: var(--primary);
+	text-decoration: none;
+	transition: var(--transition);
+}
+
+a:hover { 
+	color: var(--secondary);
+}
+
+img { 
+	max-width: 100%;
+	height: auto;
+	border: 0;
+	border-radius: var(--radius);
+}
+
+/* Layout */
+.container,
+.site-container,
+.kr-container { 
+	max-width: var(--container-width);
+	margin: 0 auto;
+	padding: 0 var(--spacing-lg);
+}
+
+.site { 
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.content { 
+	flex: 1;
+	padding: var(--spacing-3xl) 0;
+}
+
+/* Header */
+.site-header { 
+	background: rgba(255, 255, 255, 0.95);
+	border-bottom: 1px solid var(--border);
+	position: sticky;
+	top: 0;
+	z-index: 999;
+	backdrop-filter: blur(10px);
+}
+
+.header-inner { 
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--spacing-lg) 0;
+}
+
+.site-branding a { 
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+}
+
+.site-branding a:hover { 
+	color: var(--primary);
+}
+
+/* Navigation */
+.main-navigation ul { 
+	display: flex;
+	list-style: none;
+	gap: var(--spacing-xl);
+	margin: 0;
+	padding: 0;
+}
+
+.main-navigation a { 
+	color: var(--text);
+	font-weight: 500;
+	padding: var(--spacing-xs) 0;
+	position: relative;
+	font-size: 1rem;
+}
+
+.main-navigation a:hover { 
+	color: var(--primary);
+}
+
+/* Mobile Menu */
+.menu-toggle { 
+	display: none;
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	color: var(--text);
+	cursor: pointer;
+	padding: var(--spacing-xs);
+}
+
+/* Articles & Posts */
+article,
+.post,
+.type-post { 
+	background: var(--bg);
+	border-radius: var(--radius);
+	overflow: hidden;
+	margin-bottom: var(--spacing-xl);
+	transition: var(--transition);
+	border: 1px solid var(--border);
+}
+
+article:hover,
+.post:hover { 
+	box-shadow: var(--shadow-lg);
+	transform: translateY(-2px);
+}
+
+.entry-header { 
+	padding: var(--spacing-xl);
+	padding-bottom: var(--spacing-lg);
+}
+
+.entry-title { 
+	margin-bottom: var(--spacing-md);
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.entry-title a { 
+	color: var(--text);
+}
+
+.entry-title a:hover { 
+	color: var(--primary);
+}
+
+.entry-meta { 
+	color: var(--text-light);
+	font-size: 0.875rem;
+	display: flex;
+	gap: var(--spacing-md);
+	flex-wrap: wrap;
+}
+
+.entry-content,
+.entry-summary { 
+	padding: 0 var(--spacing-xl) var(--spacing-xl);
+	line-height: 1.8;
+}
+
+.entry-content > *:last-child { 
+	margin-bottom: 0;
+}
+
+/* Featured Images */
+.post-thumbnail { 
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: 16/9;
+	background: var(--bg-light);
+}
+
+.post-thumbnail img { 
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: var(--transition);
+	border-radius: 0;
+}
+
+.post-thumbnail:hover img { 
+	transform: scale(1.05);
+}
+
+/* Buttons */
+.btn,
+.button,
+.wp-block-button__link,
+input[type="submit"],
+button[type="submit"] { 
+	display: inline-block;
+	padding: var(--spacing-md) var(--spacing-xl);
+	background: linear-gradient(135deg, var(--primary), var(--secondary));
+	color: #ffffff !important;
+	border-radius: var(--radius);
+	font-weight: 600;
+	border: none;
+	cursor: pointer;
+	transition: var(--transition);
+	font-size: 1rem;
+	text-align: center;
+	line-height: 1.2;
+}
+
+.btn:hover,
+.button:hover,
+.wp-block-button__link:hover,
+input[type="submit"]:hover { 
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-lg);
+	color: #ffffff !important;
+	opacity: 0.95;
+}
+
+/* Content Grid */
+.kr-content-wrapper { 
+	display: grid;
+	gap: var(--spacing-xl);
+}
+
+body.has-sidebar .kr-content-wrapper { 
+	grid-template-columns: 1fr 340px;
+}
+
+.kr-main-content { 
+	min-width: 0;
+}
+
+/* Sidebar */
+.sidebar { 
+	padding: var(--spacing-xl);
+	background: var(--bg-light);
+	border-radius: var(--radius);
+	border: 1px solid var(--border);
+}
+
+.widget { 
+	margin-bottom: var(--spacing-xl);
+}
+
+.widget:last-child { 
+	margin-bottom: 0;
+}
+
+.widget-title { 
+	font-size: 1.25rem;
+	margin-bottom: var(--spacing-md);
+	color: var(--text);
+}
+
+/* Footer */
+.site-footer { 
+	background: var(--bg-light);
+	border-top: 1px solid var(--border);
+	padding: var(--spacing-3xl) 0 var(--spacing-xl);
+	margin-top: var(--spacing-3xl);
+}
+
+.site-info { 
+	text-align: center;
+	color: var(--text-light);
+	font-size: 0.875rem;
+	padding: var(--spacing-lg) 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+	body.has-sidebar .kr-content-wrapper { 
+		grid-template-columns: 1fr;
 	}
-	.nav.active{transform:translateX(0)}
-	.nav ul{flex-direction:column;gap:0}
-	.nav a{padding:1rem 0;border-bottom:1px solid var(--border)}
-	.menu-toggle{display:block}
-	.has-sidebar{grid-template-columns:1fr}
-	.container{padding:0 1rem}
 }
 
-/* Print styles */
-@media print{
-	.header,.nav,.footer{display:none}
-	body{font-size:12pt;color:#000}
-	a{color:#000;text-decoration:underline}
-}
-
-/* Dark mode support - Lightweight */
-@media (prefers-color-scheme:dark) {
-	:root{
-		--bg:#1a1a1a;
-		--bg-alt:#2d2d2d;
-		--text:#e5e5e5;
-		--text-light:#a3a3a3;
-		--secondary:#f5f5f5;
-		--border:#404040;
+@media (max-width: 768px) {
+	:root {
+		--spacing-xl: 2rem;
+		--spacing-3xl: 3rem;
 	}
+	
+	.menu-toggle { 
+		display: block;
+	}
+	
+	.main-navigation ul { 
+		flex-direction: column;
+		gap: var(--spacing-sm);
+	}
+	
+	.entry-header,
+	.entry-content,
+	.entry-summary { 
+		padding: var(--spacing-lg);
+	}
+}
+
+/* Utilities */
+.screen-reader-text,
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
 }

@@ -57,19 +57,36 @@ function kr_theme_get_customizer_css() {
 	// Primary color
 	$primary_color = get_theme_mod( 'kr_theme_primary_color', '#2563eb' );
 	if ( $primary_color !== '#2563eb' ) {
-		$css .= ':root { --kr-color-primary: ' . esc_attr( $primary_color ) . '; }';
+		$css .= ':root { --primary: ' . esc_attr( $primary_color ) . '; }';
+		$css .= 'a, .primary-color { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= 'button, .button, .btn, input[type="submit"] { background-color: ' . esc_attr( $primary_color ) . '; border-color: ' . esc_attr( $primary_color ) . '; color: #ffffff; }';
 	}
 	
 	// Secondary color
 	$secondary_color = get_theme_mod( 'kr_theme_secondary_color', '#0f172a' );
 	if ( $secondary_color !== '#0f172a' ) {
-		$css .= ':root { --kr-color-secondary: ' . esc_attr( $secondary_color ) . '; }';
+		$css .= ':root { --secondary: ' . esc_attr( $secondary_color ) . '; }';
+		$css .= 'h1, h2, h3, h4, h5, h6, .secondary-color { color: ' . esc_attr( $secondary_color ) . '; }';
+	}
+	
+	// Text color
+	$text_color = get_theme_mod( 'kr_theme_text_color', '#1e293b' );
+	if ( $text_color !== '#1e293b' ) {
+		$css .= ':root { --text: ' . esc_attr( $text_color ) . '; }';
+		$css .= 'body, p, .text-color { color: ' . esc_attr( $text_color ) . '; }';
+	}
+	
+	// Link color
+	$link_color = get_theme_mod( 'kr_theme_link_color', '#2563eb' );
+	if ( $link_color !== '#2563eb' ) {
+		$css .= 'a:hover, a:focus { color: ' . esc_attr( $link_color ) . '; opacity: 0.8; }';
 	}
 	
 	// Container width
 	$container_width = get_theme_mod( 'kr_theme_container_width', 1200 );
 	if ( $container_width != 1200 ) {
-		$css .= ':root { --kr-container-width: ' . intval( $container_width ) . 'px; }';
+		$css .= ':root { --container-width: ' . intval( $container_width ) . 'px; }';
+		$css .= '.container, .site-container { max-width: ' . intval( $container_width ) . 'px; }';
 	}
 	
 	return $css;
@@ -88,3 +105,4 @@ function kr_theme_resource_hints( $urls, $relation_type ) {
 	return $urls;
 }
 add_filter( 'wp_resource_hints', 'kr_theme_resource_hints', 10, 2 );
+

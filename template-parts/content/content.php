@@ -10,9 +10,18 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php if ( has_post_thumbnail() ) : ?>
-		<div class="entry-thumbnail">
+		<div class="post-thumbnail">
 			<a href="<?php the_permalink(); ?>">
-				<?php the_post_thumbnail( 'kr-theme-featured' ); ?>
+				<?php the_post_thumbnail( 'large' ); ?>
+			</a>
+		</div>
+	<?php else : ?>
+		<!-- Placeholder Unsplash Image if no featured image -->
+		<div class="post-thumbnail">
+			<a href="<?php the_permalink(); ?>">
+				<img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=675&fit=crop&q=80" 
+					 alt="<?php the_title_attribute(); ?>"
+					 style="width: 100%; height: 100%; object-fit: cover;">
 			</a>
 		</div>
 	<?php endif; ?>

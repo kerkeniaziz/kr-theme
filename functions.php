@@ -5,7 +5,7 @@
  * Main entry point - loads the core theme class
  *
  * @package KR_Theme
- * @author Aziz Kerkeni
+ * @author krtheme.com
  * @link https://www.kerkeniaziz.ovh/
  * @since 1.3.2
  */

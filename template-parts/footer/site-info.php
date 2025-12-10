@@ -15,7 +15,7 @@
 				/* translators: 1: Theme name, 2: Author name */
 				esc_html__( 'Copyright &copy; 2015-%1$s %2$s. Powered by %3$s', 'kr-theme' ),
 				date( 'Y' ),
-				'<a href="https://www.kerkeniaziz.ovh/" target="_blank" rel="noopener">Aziz Kerkeni</a>',
+				'<a href="https://krtheme.com/" target="_blank" rel="noopener">krtheme.com</a>',
 				'<a href="' . esc_url( __( 'https://wordpress.org/', 'kr-theme' ) ) . '">WordPress</a>'
 			);
 			?>
