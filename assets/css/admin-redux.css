@@ -1,0 +1,59 @@
+/* KR Theme Redux Admin Custom Styles */
+.redux-container {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f3f4f8 100%);
+}
+.redux-main .redux-group-tab {
+    background: #2563eb;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+}
+.redux-main .redux-group-tab.active {
+    background: #9333ea;
+    color: #fff;
+}
+.redux-main .redux-group-menu li.active a {
+    color: #9333ea !important;
+}
+.redux-main .redux-group-menu li a {
+    color: #2563eb !important;
+}
+.redux-main .redux-field-title {
+    color: #2563eb;
+    font-weight: 600;
+}
+.redux-main .redux-field-desc,
+.redux-main .redux-field-subtitle {
+    color: #666;
+}
+.redux-main .button-primary,
+.redux-main .redux-save,
+.redux-main .redux-action_bar .button {
+    background: linear-gradient(90deg, #2563eb 0%, #9333ea 100%);
+    border: none;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    border-radius: 4px;
+    font-weight: 600;
+}
+.redux-main .button-primary:hover,
+.redux-main .redux-save:hover,
+.redux-main .redux-action_bar .button:hover {
+    background: linear-gradient(90deg, #9333ea 0%, #2563eb 100%);
+    color: #fff;
+}
+.redux-main input[type="text"],
+.redux-main input[type="number"],
+.redux-main select,
+.redux-main textarea {
+    border: 1px solid #2563eb;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+.redux-main input[type="text"]:focus,
+.redux-main input[type="number"]:focus,
+.redux-main select:focus,
+.redux-main textarea:focus {
+    border-color: #9333ea;
+    box-shadow: 0 0 0 2px rgba(147,51,234,0.08);
+}

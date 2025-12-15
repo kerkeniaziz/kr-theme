@@ -84,3 +84,26 @@ function kr_theme_register_woocommerce_widgets() {
 	) );
 }
 add_action( 'widgets_init', 'kr_theme_register_woocommerce_widgets' );
+
+// Load Redux extensions and theme options
+if ( file_exists( get_template_directory() . '/inc/redux-extensions/loader.php' ) ) {
+	require_once get_template_directory() . '/inc/redux-extensions/loader.php';
+}
+if ( file_exists( get_template_directory() . '/inc/theme-options.php' ) ) {
+	require_once get_template_directory() . '/inc/theme-options.php';
+}
+
+/**
+ * Enqueue custom admin CSS for Redux options panel
+ */
+function kr_theme_admin_redux_css($hook) {
+    if ( strpos($hook, 'kr_theme_options') !== false ) {
+        wp_enqueue_style(
+            'kr-admin-redux',
+            get_template_directory_uri() . '/assets/css/admin-redux.css',
+            array(),
+            wp_get_theme()->get('Version')
+        );
+    }
+}
+add_action('admin_enqueue_scripts', 'kr_theme_admin_redux_css');
