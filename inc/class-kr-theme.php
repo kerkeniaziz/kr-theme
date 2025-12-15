@@ -52,7 +52,7 @@ if ( ! class_exists( 'KR_Theme' ) ) {
 		 */
 	private function define_constants() {
 		if ( ! defined( 'KR_THEME_VERSION' ) ) {
-			define( 'KR_THEME_VERSION', '1.3.2' );
+			define( 'KR_THEME_VERSION', '1.4.0' );
 			}
 			if ( ! defined( 'KR_THEME_DIR' ) ) {
 				define( 'KR_THEME_DIR', get_template_directory() );

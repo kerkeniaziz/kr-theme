@@ -12,10 +12,10 @@
 		<div class="kr-container">
 			<?php
 			printf(
-				/* translators: 1: Theme name, 2: Author name */
-				esc_html__( 'Copyright &copy; 2015-%1$s %2$s. Powered by %3$s', 'kr-theme' ),
+				/* translators: 1: Year, 2: Site name, 3: WordPress */
+				esc_html__( 'Copyright &copy; %1$s %2$s. Powered by %3$s', 'kr-theme' ),
 				date( 'Y' ),
-				'<a href="https://krtheme.com/" target="_blank" rel="noopener">krtheme.com</a>',
+				'<a href="https://www.krtheme.com/" target="_blank" rel="noopener">KR Theme</a>',
 				'<a href="' . esc_url( __( 'https://wordpress.org/', 'kr-theme' ) ) . '">WordPress</a>'
 			);
 			?>

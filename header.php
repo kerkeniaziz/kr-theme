@@ -14,13 +14,24 @@
 
 <?php kr_theme_before_header(); ?>
 
+<!-- KR Header Builder Support -->
 <header id="masthead" class="site-header">
-	<div class="kr-container">
-		<div class="header-inner">
-			<?php get_template_part( 'template-parts/header/site-branding' ); ?>
-			<?php get_template_part( 'template-parts/header/navigation' ); ?>
-		</div>
-	</div>
+	<?php 
+		// Check if header builder is available and has a default header
+		if ( class_exists( 'KR_Header_Footer_Builder' ) ) {
+			$header_id = KR_Header_Footer_Builder::get_default_header_id();
+			if ( $header_id ) {
+				// Display custom header from builder
+				echo wp_kses_post( KR_Header_Footer_Builder::get_header( $header_id ) );
+			} else {
+				// Fallback to default theme header
+				kr_theme_default_header();
+			}
+		} else {
+			// Fallback if builder not available
+			kr_theme_default_header();
+		}
+	?>
 </header><!-- #masthead -->
 
 <?php kr_theme_after_header(); ?>

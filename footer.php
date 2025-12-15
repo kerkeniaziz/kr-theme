@@ -1,23 +1,23 @@
 <?php kr_theme_before_footer(); ?>
 
+<!-- KR Footer Builder Support -->
 <footer id="colophon" class="site-footer">
-	<div class="kr-container">
-		<?php if ( is_active_sidebar( 'footer-1' ) || is_active_sidebar( 'footer-2' ) || is_active_sidebar( 'footer-3' ) || is_active_sidebar( 'footer-4' ) ) : ?>
-			<div class="footer-widgets">
-				<?php
-				for ( $i = 1; $i <= 4; $i++ ) {
-					if ( is_active_sidebar( 'footer-' . $i ) ) {
-						echo '<div class="footer-widget-area">';
-						dynamic_sidebar( 'footer-' . $i );
-						echo '</div>';
-					}
-				}
-				?>
-			</div>
-		<?php endif; ?>
-
-		<?php get_template_part( 'template-parts/footer/site-info' ); ?>
-	</div>
+	<?php 
+		// Check if footer builder is available and has a default footer
+		if ( class_exists( 'KR_Header_Footer_Builder' ) ) {
+			$footer_id = KR_Header_Footer_Builder::get_default_footer_id();
+			if ( $footer_id ) {
+				// Display custom footer from builder
+				echo wp_kses_post( KR_Header_Footer_Builder::get_footer( $footer_id ) );
+			} else {
+				// Fallback to default theme footer
+				kr_theme_default_footer();
+			}
+		} else {
+			// Fallback if builder not available
+			kr_theme_default_footer();
+		}
+	?>
 </footer><!-- #colophon -->
 
 <?php kr_theme_after_footer(); ?>

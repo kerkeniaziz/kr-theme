@@ -35,10 +35,10 @@ function kr_theme_register_required_plugins() {
 	 */
 	$plugins = array(
 
-		// KR Toolkit - Install from GitHub releases
-		// Note: Users can also install manually from GitHub or via the auto-update system
+		// KR Toolkit - Required for header/footer builder and demos
+		// Install from GitHub releases
 		array(
-			'name'               => 'KR Toolkit',
+			'name'               => 'KR Toolkit - Header/Footer Builder & Demos',
 			'slug'               => 'kr-toolkit',
 			'source'             => 'https://github.com/kerkeniaziz/kr-toolkit/releases/latest/download/kr-toolkit.zip',
 			'required'           => true,
@@ -49,30 +49,33 @@ function kr_theme_register_required_plugins() {
 		),
 
 		// Elementor - Required page builder
+		// Status: CRITICAL - Core functionality depends on Elementor
 		array(
-			'name'     => 'Elementor Page Builder',
+			'name'     => 'Elementor Page Builder - REQUIRED',
 			'slug'     => 'elementor',
 			'required' => true,
 			'version'  => '3.16.0',
 		),
 
 		// Essential Addons for Elementor - 60+ Free Widgets
+		// Status: CRITICAL - Provides extended widgets needed by theme
 		array(
-			'name'     => 'Essential Addons for Elementor',
+			'name'     => 'Essential Addons for Elementor - REQUIRED',
 			'slug'     => 'essential-addons-for-elementor-lite',
 			'required' => true,
 		),
 
 		// WooCommerce - Optional for e-commerce sites
+		// Status: OPTIONAL - Only needed if selling products
 		array(
-			'name'     => 'WooCommerce',
+			'name'     => 'WooCommerce - OPTIONAL (for e-commerce)',
 			'slug'     => 'woocommerce',
 			'required' => false,
 		),
 
 		// Contact Form 7 - Optional for contact forms
 		array(
-			'name'     => 'Contact Form 7',
+			'name'     => 'Contact Form 7 - OPTIONAL (for contact forms)',
 			'slug'     => 'contact-form-7',
 			'required' => false,
 		),
@@ -92,26 +95,26 @@ function kr_theme_register_required_plugins() {
 		'dismissable'  => true,
 		'dismiss_msg'  => '',
 		'is_automatic' => false,
-		'message'      => '',
+		'message'      => __( 'KR Theme requires some plugins to be installed and activated for full functionality. Below is a list of required and recommended plugins.', 'kr-theme' ),
 		'strings'      => array(
-			'page_title'                      => __( 'Install Recommended Plugins', 'kr-theme' ),
-			'menu_title'                      => __( 'Install Plugins', 'kr-theme' ),
+			'page_title'                      => __( 'KR Theme - Install Required Plugins', 'kr-theme' ),
+			'menu_title'                      => __( '⚠️ Install Required Plugins', 'kr-theme' ),
 			'installing'                      => __( 'Installing Plugin: %s', 'kr-theme' ),
 			'updating'                        => __( 'Updating Plugin: %s', 'kr-theme' ),
 			'oops'                            => __( 'Something went wrong with the plugin API.', 'kr-theme' ),
 			'notice_can_install_required'     => _n_noop(
-				'This theme requires the following plugin: %1$s.',
-				'This theme requires the following plugins: %1$s.',
+				'<strong>KR Theme Notice:</strong> The following plugin is REQUIRED for KR Theme to work properly: %1$s. <a href="%2$s" class="button button-primary">Install Now</a>',
+				'<strong>KR Theme Notice:</strong> The following plugins are REQUIRED for KR Theme to work properly: %1$s. <a href="%2$s" class="button button-primary">Install Now</a>',
 				'kr-theme'
 			),
 			'notice_can_install_recommended'  => _n_noop(
-				'This theme recommends the following plugin: %1$s.',
-				'This theme recommends the following plugins: %1$s.',
+				'<strong>KR Theme Notice:</strong> The following plugin is recommended: %1$s. <a href="%2$s" class="button button-primary">Install Now</a>',
+				'<strong>KR Theme Notice:</strong> The following plugins are recommended: %1$s. <a href="%2$s" class="button button-primary">Install Now</a>',
 				'kr-theme'
 			),
 			'notice_ask_to_update'            => _n_noop(
-				'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
-				'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
+				'The following plugin needs to be updated to its latest version to ensure maximum compatibility with KR Theme: %1$s.',
+				'The following plugins need to be updated to their latest versions to ensure maximum compatibility with KR Theme: %1$s.',
 				'kr-theme'
 			),
 			'notice_ask_to_update_maybe'      => _n_noop(
@@ -120,8 +123,8 @@ function kr_theme_register_required_plugins() {
 				'kr-theme'
 			),
 			'notice_can_activate_required'    => _n_noop(
-				'The following required plugin is currently inactive: %1$s.',
-				'The following required plugins are currently inactive: %1$s.',
+				'<strong>KR Theme Notice:</strong> The following required plugin is currently inactive: %1$s. <a href="%2$s" class="button button-primary">Activate Now</a>',
+				'<strong>KR Theme Notice:</strong> The following required plugins are currently inactive: %1$s. <a href="%2$s" class="button button-primary">Activate Now</a>',
 				'kr-theme'
 			),
 			'notice_can_activate_recommended' => _n_noop(
@@ -148,10 +151,10 @@ function kr_theme_register_required_plugins() {
 			'plugin_activated'                => __( 'Plugin activated successfully.', 'kr-theme' ),
 			'activated_successfully'          => __( 'The following plugin was activated successfully:', 'kr-theme' ),
 			'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'kr-theme' ),
-			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'kr-theme' ),
-			'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'kr-theme' ),
+			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for KR Theme. Please update the plugin.', 'kr-theme' ),
+			'complete'                        => __( '✓ All required plugins installed and activated successfully. Your KR Theme is now ready! %1$s', 'kr-theme' ),
 			'dismiss'                         => __( 'Dismiss this notice', 'kr-theme' ),
-			'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'kr-theme' ),
+			'notice_cannot_install_activate'  => __( '<strong>Important:</strong> There are one or more required plugins to install and activate. KR Theme cannot function properly without them.', 'kr-theme' ),
 			'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'kr-theme' ),
 			'nag_type'                        => 'updated',
 		),
