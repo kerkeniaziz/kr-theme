@@ -80,6 +80,13 @@ function kr_theme_register_required_plugins() {
 			'required' => false,
 		),
 
+		// Redux Framework - Required for Theme Options
+		array(
+			'name'     => 'Redux Framework',
+			'slug'     => 'redux-framework',
+			'required' => true,
+		),
+
 	);
 
 	/**

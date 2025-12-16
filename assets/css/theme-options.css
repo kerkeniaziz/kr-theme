@@ -1,0 +1,139 @@
+/**
+ * KR Theme Options - Frontend Styles
+ * These styles handle layout styles and other theme option-based styling
+ */
+
+/* ======================= LAYOUT STYLES ======================= */
+
+/* Wide Layout (Default) */
+body.kr-layout-wide {
+	width: 100%;
+}
+
+body.kr-layout-wide .container {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+/* Boxed Layout */
+body.kr-layout-boxed {
+	background-color: #f5f5f5;
+}
+
+body.kr-layout-boxed .site-wrapper,
+body.kr-layout-boxed .kr-boxed-layout {
+	max-width: 1400px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Float Layout */
+body.kr-layout-float .site-wrapper,
+body.kr-layout-float .kr-float-layout {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+/* ======================= HEADER STYLES ======================= */
+
+header.site-header {
+	transition: all 0.3s ease;
+}
+
+header.site-header.kr-header-transparent {
+	background-color: transparent;
+	box-shadow: none;
+}
+
+header.site-header.kr-header-transparent.kr-header-dark {
+	color: #000000;
+}
+
+header.site-header.kr-header-transparent.kr-header-light {
+	color: #ffffff;
+}
+
+header.site-header.kr-sticky-active {
+	background-color: rgba(255, 255, 255, 0.98);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================= PRELOADER STYLES ======================= */
+
+.kr-preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+.kr-preloader-spinner {
+	animation: kr-spin 0.8s linear infinite;
+}
+
+@keyframes kr-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ======================= BACK TO TOP BUTTON ======================= */
+
+#kr-back-to-top {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+	z-index: 999;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#kr-back-to-top.visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+#kr-back-to-top:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#kr-back-to-top svg {
+	width: 20px;
+	height: 20px;
+}
+
+/* ======================= RESPONSIVE ======================= */
+
+@media (max-width: 768px) {
+	body.kr-layout-boxed .site-wrapper {
+		box-shadow: none;
+	}
+
+	body.kr-layout-float .kr-float-layout {
+		padding: 0 15px;
+	}
+
+	#kr-back-to-top {
+		bottom: 20px;
+		right: 20px;
+		width: 36px;
+		height: 36px;
+	}
+}

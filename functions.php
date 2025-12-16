@@ -93,6 +93,11 @@ if ( file_exists( get_template_directory() . '/inc/theme-options.php' ) ) {
 	require_once get_template_directory() . '/inc/theme-options.php';
 }
 
+// Load theme options output logic (enqueue and output frontend styles/scripts)
+if ( file_exists( get_template_directory() . '/inc/theme-options-output.php' ) ) {
+	require_once get_template_directory() . '/inc/theme-options-output.php';
+}
+
 /**
  * Enqueue custom admin CSS for Redux options panel
  */
