@@ -1,0 +1,16 @@
+/**
+ * Responsive Utilities
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+@include media-query('md') {
+    .hide-md { display: none !important; }
+    .show-md { display: block !important; }
+}
+
+@include media-query('lg') {
+    .hide-lg { display: none !important; }
+    .show-lg { display: block !important; }
+}

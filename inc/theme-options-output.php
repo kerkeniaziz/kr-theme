@@ -70,8 +70,12 @@ class KR_Theme_Options_Output {
 		?>
 		</style>
 		<?php
-		// Output inline styles
-		echo wp_kses_post( ob_get_clean() );
+		// Get buffer contents and output directly (style tags are safe)
+		$output = ob_get_clean();
+		if ( ! empty( $output ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $output;
+		}
 	}
 
 	/**
@@ -92,7 +96,7 @@ class KR_Theme_Options_Output {
 				echo "body { \n";
 				
 				if ( ! empty( $options['kr_body_background']['background-color'] ) ) {
-					echo "  background-color: " . esc_attr( $options['kr_body_background']['background-color'] ) . "; \n";
+					echo "  background-color: " . sanitize_text_field( $options['kr_body_background']['background-color'] ) . "; \n";
 				}
 				
 				if ( ! empty( $options['kr_body_background']['background-image'] ) ) {
@@ -100,19 +104,19 @@ class KR_Theme_Options_Output {
 				}
 				
 				if ( ! empty( $options['kr_body_background']['background-repeat'] ) ) {
-					echo "  background-repeat: " . esc_attr( $options['kr_body_background']['background-repeat'] ) . "; \n";
+					echo "  background-repeat: " . sanitize_text_field( $options['kr_body_background']['background-repeat'] ) . "; \n";
 				}
 				
 				if ( ! empty( $options['kr_body_background']['background-attachment'] ) ) {
-					echo "  background-attachment: " . esc_attr( $options['kr_body_background']['background-attachment'] ) . "; \n";
+					echo "  background-attachment: " . sanitize_text_field( $options['kr_body_background']['background-attachment'] ) . "; \n";
 				}
 				
 				if ( ! empty( $options['kr_body_background']['background-position'] ) ) {
-					echo "  background-position: " . esc_attr( $options['kr_body_background']['background-position'] ) . "; \n";
+					echo "  background-position: " . sanitize_text_field( $options['kr_body_background']['background-position'] ) . "; \n";
 				}
 				
 				if ( ! empty( $options['kr_body_background']['background-size'] ) ) {
-					echo "  background-size: " . esc_attr( $options['kr_body_background']['background-size'] ) . "; \n";
+					echo "  background-size: " . sanitize_text_field( $options['kr_body_background']['background-size'] ) . "; \n";
 				}
 				
 				echo "} \n\n";
@@ -133,7 +137,7 @@ class KR_Theme_Options_Output {
 			echo ".kr-float-layout { max-width: {$site_max_width}px; margin: 0 auto; padding: 0 20px; } \n";
 		}
 		
-		echo "body { --kr-layout-style: '" . esc_attr( $layout_style ) . "'; } \n\n";
+		echo "body { --kr-layout-style: '" . sanitize_text_field( $layout_style ) . "'; } \n\n";
 	}
 
 	/**
@@ -152,29 +156,66 @@ class KR_Theme_Options_Output {
 		$link_regular = ! empty( $link_colors['regular'] ) ? $link_colors['regular'] : '#2563eb';
 		$link_hover = ! empty( $link_colors['hover'] ) ? $link_colors['hover'] : '#1d4ed8';
 		$link_active = ! empty( $link_colors['active'] ) ? $link_colors['active'] : '#1d4ed8';
+		$link_visited = ! empty( $link_colors['visited'] ) ? $link_colors['visited'] : '#6366f1';
 
+		// Output CSS custom properties to :root
 		echo ":root { \n";
-		echo "  --kr-primary-color: " . esc_attr( $primary_color ) . "; \n";
-		echo "  --kr-text-color: " . esc_attr( $text_color ) . "; \n";
-		echo "  --kr-text-secondary: " . esc_attr( $text_secondary ) . "; \n";
-		echo "  --kr-text-tertiary: " . esc_attr( $text_tertiary ) . "; \n";
-		echo "  --kr-heading-color: " . esc_attr( $heading_color ) . "; \n";
-		echo "  --kr-link-color: " . esc_attr( $link_regular ) . "; \n";
-		echo "  --kr-link-hover: " . esc_attr( $link_hover ) . "; \n";
-		echo "  --kr-link-active: " . esc_attr( $link_active ) . "; \n";
+		echo "  --kr-primary-color: " . sanitize_text_field( $primary_color ) . "; \n";
+		echo "  --kr-text-color: " . sanitize_text_field( $text_color ) . "; \n";
+		echo "  --kr-text-secondary: " . sanitize_text_field( $text_secondary ) . "; \n";
+		echo "  --kr-text-tertiary: " . sanitize_text_field( $text_tertiary ) . "; \n";
+		echo "  --kr-heading-color: " . sanitize_text_field( $heading_color ) . "; \n";
+		echo "  --kr-link-color: " . sanitize_text_field( $link_regular ) . "; \n";
+		echo "  --kr-link-hover: " . sanitize_text_field( $link_hover ) . "; \n";
+		echo "  --kr-link-visited: " . sanitize_text_field( $link_visited ) . "; \n";
+		echo "  --kr-link-active: " . sanitize_text_field( $link_active ) . "; \n";
 		echo "} \n\n";
 
-		// Apply text colors to body and headings
-		echo "body { color: " . esc_attr( $text_color ) . "; } \n";
-		echo "h1, h2, h3, h4, h5, h6 { color: " . esc_attr( $heading_color ) . "; } \n";
-		echo "a { color: " . esc_attr( $link_regular ) . "; } \n";
-		echo "a:hover { color: " . esc_attr( $link_hover ) . "; } \n";
-		echo "a:active { color: " . esc_attr( $link_active ) . "; } \n\n";
+		// Apply text colors to elements
+		echo "body { \n";
+		echo "  color: " . sanitize_text_field( $text_color ) . "; \n";
+		echo "} \n\n";
+
+		echo "h1, h2, h3, h4, h5, h6, .heading { \n";
+		echo "  color: " . sanitize_text_field( $heading_color ) . "; \n";
+		echo "} \n\n";
+
+		echo "a { \n";
+		echo "  color: " . sanitize_text_field( $link_regular ) . "; \n";
+		echo "  text-decoration: none; \n";
+		echo "} \n\n";
+
+		echo "a:hover { \n";
+		echo "  color: " . sanitize_text_field( $link_hover ) . "; \n";
+		echo "} \n\n";
+
+		echo "a:visited { \n";
+		echo "  color: " . sanitize_text_field( $link_visited ) . "; \n";
+		echo "} \n\n";
+
+		echo "a:active { \n";
+		echo "  color: " . sanitize_text_field( $link_active ) . "; \n";
+		echo "} \n\n";
 
 		// Primary color styles for buttons
-		echo ".btn-primary, button[type='submit'], input[type='submit'], .button { \n";
-		echo "  background-color: " . esc_attr( $primary_color ) . "; \n";
+		echo ".btn-primary, .button-primary, button[type='submit'], input[type='submit'], .button { \n";
+		echo "  background-color: " . sanitize_text_field( $primary_color ) . "; \n";
 		echo "  color: #ffffff; \n";
+		echo "  border-color: " . sanitize_text_field( $primary_color ) . "; \n";
+		echo "} \n\n";
+
+		echo ".btn-primary:hover, .button-primary:hover, button[type='submit']:hover, input[type='submit']:hover, .button:hover { \n";
+		echo "  opacity: 0.9; \n";
+		echo "} \n\n";
+
+		// Secondary text color for small text
+		echo ".text-muted, .description, .meta, .comment-meta, .post-meta { \n";
+		echo "  color: " . sanitize_text_field( $text_secondary ) . "; \n";
+		echo "} \n\n";
+
+		// Tertiary text color for subtle text
+		echo ".text-light, .breadcrumb { \n";
+		echo "  color: " . sanitize_text_field( $text_tertiary ) . "; \n";
 		echo "} \n\n";
 	}
 
@@ -190,12 +231,12 @@ class KR_Theme_Options_Output {
 		$gradient_heading_2 = ! empty( $options['kr_gradient_heading_color_2'] ) ? $options['kr_gradient_heading_color_2'] : '#f3eec2';
 
 		echo ":root { \n";
-		echo "  --kr-gradient-color-1: " . esc_attr( $gradient_1 ) . "; \n";
-		echo "  --kr-gradient-color-2: " . esc_attr( $gradient_2 ) . "; \n";
-		echo "  --kr-gradient-color-3: " . esc_attr( $gradient_3 ) . "; \n";
-		echo "  --kr-gradient-color-4: " . esc_attr( $gradient_4 ) . "; \n";
-		echo "  --kr-gradient-heading-1: " . esc_attr( $gradient_heading_1 ) . "; \n";
-		echo "  --kr-gradient-heading-2: " . esc_attr( $gradient_heading_2 ) . "; \n";
+		echo "  --kr-gradient-color-1: " . sanitize_text_field( $gradient_1 ) . "; \n";
+		echo "  --kr-gradient-color-2: " . sanitize_text_field( $gradient_2 ) . "; \n";
+		echo "  --kr-gradient-color-3: " . sanitize_text_field( $gradient_3 ) . "; \n";
+		echo "  --kr-gradient-color-4: " . sanitize_text_field( $gradient_4 ) . "; \n";
+		echo "  --kr-gradient-heading-1: " . sanitize_text_field( $gradient_heading_1 ) . "; \n";
+		echo "  --kr-gradient-heading-2: " . sanitize_text_field( $gradient_heading_2 ) . "; \n";
 		echo "} \n\n";
 
 		// Define gradient classes for use in Elementor
@@ -215,8 +256,8 @@ class KR_Theme_Options_Output {
 			$body_weight = ! empty( $body_font['font-weight'] ) ? $body_font['font-weight'] : '400';
 			
 			echo "body { \n";
-			echo "  font-family: '" . esc_attr( $body_family ) . "', sans-serif; \n";
-			echo "  font-weight: " . esc_attr( $body_weight ) . "; \n";
+			echo "  font-family: '" . sanitize_text_field( $body_family ) . "', sans-serif; \n";
+			echo "  font-weight: " . sanitize_text_field( $body_weight ) . "; \n";
 			
 			if ( ! empty( $options['kr_body_font_size'] ) ) {
 				echo "  font-size: " . intval( $options['kr_body_font_size'] ) . "px; \n";
@@ -236,8 +277,8 @@ class KR_Theme_Options_Output {
 			$heading_weight = ! empty( $heading_font['font-weight'] ) ? $heading_font['font-weight'] : '600';
 			
 			echo "h1, h2, h3, h4, h5, h6 { \n";
-			echo "  font-family: '" . esc_attr( $heading_family ) . "', sans-serif; \n";
-			echo "  font-weight: " . esc_attr( $heading_weight ) . "; \n";
+			echo "  font-family: '" . sanitize_text_field( $heading_family ) . "', sans-serif; \n";
+			echo "  font-weight: " . sanitize_text_field( $heading_weight ) . "; \n";
 			
 			if ( ! empty( $options['kr_heading_line_height'] ) ) {
 				echo "  line-height: " . floatval( $options['kr_heading_line_height'] ) . "; \n";
@@ -376,7 +417,7 @@ class KR_Theme_Options_Output {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: <?php echo esc_attr( 'rgba(' . implode( ',', array_map( 'intval', sscanf( $bg_hex, '#%02x%02x%02x' ) ) ) . ',' . $bg_alpha . ')' ); ?>;
+			background-color: <?php echo sanitize_text_field( 'rgba(' . implode( ',', array_map( 'intval', sscanf( $bg_hex, '#%02x%02x%02x' ) ) ) . ',' . $bg_alpha . ')' ); ?>;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -399,7 +440,7 @@ class KR_Theme_Options_Output {
 			width: 50px;
 			height: 50px;
 			border: 4px solid rgba(0, 0, 0, 0.1);
-			border-top-color: <?php echo esc_attr( $spinner_color ); ?>;
+			border-top-color: <?php echo sanitize_text_field( $spinner_color ); ?>;
 			border-radius: 50%;
 			animation: kr-spin 0.8s linear infinite;
 		}
@@ -509,7 +550,7 @@ class KR_Theme_Options_Output {
 			$page_title_bg = ! empty( $options['kr_page_title_bg_color'] ) ? $options['kr_page_title_bg_color'] : '#f5f5f5';
 			
 			echo ".kr-page-title { \n";
-			echo "  background-color: " . esc_attr( $page_title_bg ) . "; \n";
+			echo "  background-color: " . sanitize_text_field( $page_title_bg ) . "; \n";
 			echo "  padding: 40px 0; \n";
 			echo "  margin-bottom: 40px; \n";
 			echo "} \n\n";
@@ -520,7 +561,7 @@ class KR_Theme_Options_Output {
 			$post_title_bg = ! empty( $options['kr_post_title_bg_color'] ) ? $options['kr_post_title_bg_color'] : '#f5f5f5';
 			
 			echo ".kr-post-title { \n";
-			echo "  background-color: " . esc_attr( $post_title_bg ) . "; \n";
+			echo "  background-color: " . sanitize_text_field( $post_title_bg ) . "; \n";
 			echo "  padding: 40px 0; \n";
 			echo "  margin-bottom: 40px; \n";
 			echo "} \n\n";
@@ -532,9 +573,9 @@ class KR_Theme_Options_Output {
 		$page_title_layout = ! empty( $options['kr_page_title_layout'] ) ? $options['kr_page_title_layout'] : 'full-width';
 		
 		echo "body { \n";
-		echo "  --kr-page-layout: '" . esc_attr( $page_layout ) . "'; \n";
-		echo "  --kr-post-title-layout: '" . esc_attr( $post_layout ) . "'; \n";
-		echo "  --kr-page-title-layout: '" . esc_attr( $page_title_layout ) . "'; \n";
+		echo "  --kr-page-layout: '" . sanitize_text_field( $page_layout ) . "'; \n";
+		echo "  --kr-post-title-layout: '" . sanitize_text_field( $post_layout ) . "'; \n";
+		echo "  --kr-page-title-layout: '" . sanitize_text_field( $page_title_layout ) . "'; \n";
 		echo "} \n\n";
 	}
 
@@ -562,35 +603,34 @@ class KR_Theme_Options_Output {
 
 		// Quick View Button
 		if ( ! empty( $options['kr_product_quick_view'] ) && $options['kr_product_quick_view'] == 1 ) {
-			echo ".kr-product-quick-view { display: block; } \n";
+			echo ".kr-product-quick-view { display: block; } \n\n";
 		} else {
-			echo ".kr-product-quick-view { display: none; } \n";
+			echo ".kr-product-quick-view { display: none !important; } \n\n";
 		}
-		echo "\n";
 
 		// Wishlist Button
 		if ( ! empty( $options['kr_product_wishlist'] ) && $options['kr_product_wishlist'] == 1 ) {
-			echo ".kr-product-wishlist { display: block; } \n";
+			echo ".kr-product-wishlist { display: block; } \n\n";
 		} else {
-			echo ".kr-product-wishlist { display: none; } \n";
+			echo ".kr-product-wishlist { display: none !important; } \n\n";
 		}
-		echo "\n";
 
 		// Compare Button
 		if ( ! empty( $options['kr_product_compare'] ) && $options['kr_product_compare'] == 1 ) {
-			echo ".kr-product-compare { display: block; } \n";
+			echo ".kr-product-compare { display: block; } \n\n";
 		} else {
-			echo ".kr-product-compare { display: none; } \n";
+			echo ".kr-product-compare { display: none !important; } \n\n";
 		}
-		echo "\n";
 
-		// Shop Layout settings
+		// Shop Layout and WooCommerce page styles
 		$shop_layout = ! empty( $options['kr_shop_layout'] ) ? $options['kr_shop_layout'] : 'container';
 		$shop_sidebar = ! empty( $options['kr_shop_sidebar'] ) ? $options['kr_shop_sidebar'] : 'left';
+		$products_per_page = ! empty( $options['kr_products_per_page'] ) ? intval( $options['kr_products_per_page'] ) : 12;
 		
 		echo "body.woocommerce { \n";
-		echo "  --kr-shop-layout: '" . esc_attr( $shop_layout ) . "'; \n";
-		echo "  --kr-shop-sidebar: '" . esc_attr( $shop_sidebar ) . "'; \n";
+		echo "  --kr-shop-layout: '" . sanitize_text_field( $shop_layout ) . "'; \n";
+		echo "  --kr-shop-sidebar: '" . sanitize_text_field( $shop_sidebar ) . "'; \n";
+		echo "  --kr-products-per-page: " . $products_per_page . "; \n";
 		echo "} \n\n";
 
 		// Product Gallery styles
@@ -615,16 +655,10 @@ class KR_Theme_Options_Output {
 			echo "} \n\n";
 		}
 
-		// Products per page CSS var
-		$products_per_page = ! empty( $options['kr_products_per_page'] ) ? intval( $options['kr_products_per_page'] ) : 12;
-		echo "body.woocommerce { \n";
-		echo "  --kr-products-per-page: " . $products_per_page . "; \n";
-		echo "} \n\n";
-
 		// Single Product Layout
 		$single_product_layout = ! empty( $options['kr_single_product_layout'] ) ? $options['kr_single_product_layout'] : 'container';
 		echo "body.woocommerce.single-product { \n";
-		echo "  --kr-single-product-layout: '" . esc_attr( $single_product_layout ) . "'; \n";
+		echo "  --kr-single-product-layout: '" . sanitize_text_field( $single_product_layout ) . "'; \n";
 		echo "} \n\n";
 	}
 

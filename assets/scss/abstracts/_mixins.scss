@@ -1,0 +1,273 @@
+/**
+ * SCSS Mixins
+ * Reusable SCSS mixins for common patterns
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/**
+ * Media query mixin
+ * Usage: @include media-query('sm') { ... }
+ */
+@mixin media-query($breakpoint) {
+    @if $breakpoint == 'xs' {
+        @media (max-width: #{$breakpoint-sm - 1}) {
+            @content;
+        }
+    } @else if $breakpoint == 'sm' {
+        @media (min-width: $breakpoint-sm) {
+            @content;
+        }
+    } @else if $breakpoint == 'md' {
+        @media (min-width: $breakpoint-md) {
+            @content;
+        }
+    } @else if $breakpoint == 'lg' {
+        @media (min-width: $breakpoint-lg) {
+            @content;
+        }
+    } @else if $breakpoint == 'xl' {
+        @media (min-width: $breakpoint-xl) {
+            @content;
+        }
+    } @else if $breakpoint == '2xl' {
+        @media (min-width: $breakpoint-2xl) {
+            @content;
+        }
+    }
+}
+
+/* ==================== FLEXBOX ==================== */
+
+/**
+ * Flex center - center items both horizontally and vertically
+ */
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/**
+ * Flex between - space items with space-between
+ */
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/**
+ * Flex column
+ */
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== POSITIONING ==================== */
+
+/**
+ * Absolute center
+ */
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/**
+ * Cover all space
+ */
+@mixin cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==================== TEXT ==================== */
+
+/**
+ * Text truncate - one line ellipsis
+ */
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+ * Text clamp - multiple lines ellipsis
+ */
+@mixin text-clamp($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/**
+ * Smooth text rendering
+ */
+@mixin smooth-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== TRANSITIONS ==================== */
+
+/**
+ * Transition with custom duration
+ */
+@mixin transition($properties...) {
+    $transition-properties: ();
+    
+    @each $property in $properties {
+        $transition-properties: append($transition-properties, $property $transition-base);
+    }
+    
+    transition: $transition-properties;
+}
+
+/**
+ * Transition fast
+ */
+@mixin transition-fast($properties...) {
+    $transition-properties: ();
+    
+    @each $property in $properties {
+        $transition-properties: append($transition-properties, $property $transition-fast);
+    }
+    
+    transition: $transition-properties;
+}
+
+/**
+ * Transition slow
+ */
+@mixin transition-slow($properties...) {
+    $transition-properties: ();
+    
+    @each $property in $properties {
+        $transition-properties: append($transition-properties, $property $transition-slow);
+    }
+    
+    transition: $transition-properties;
+}
+
+/* ==================== SHADOWS ==================== */
+
+/**
+ * Box shadow mixin with custom values
+ */
+@mixin box-shadow($level: 'md') {
+    @if $level == 'sm' {
+        box-shadow: $shadow-sm;
+    } @else if $level == 'md' {
+        box-shadow: $shadow-md;
+    } @else if $level == 'lg' {
+        box-shadow: $shadow-lg;
+    } @else if $level == 'xl' {
+        box-shadow: $shadow-xl;
+    } @else if $level == '2xl' {
+        box-shadow: $shadow-2xl;
+    }
+}
+
+/* ==================== GRADIENT ==================== */
+
+/**
+ * Linear gradient mixin
+ */
+@mixin gradient($direction, $color-start, $color-end) {
+    background: linear-gradient($direction, $color-start, $color-end);
+    background: -webkit-linear-gradient($direction, $color-start, $color-end);
+}
+
+/* ==================== BUTTONS ==================== */
+
+/**
+ * Button base styles
+ */
+@mixin button-base {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    font-weight: $font-weight-semibold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: $border-radius-md;
+    @include transition(background-color, color, border-color);
+    
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+/* ==================== FORM ==================== */
+
+/**
+ * Form input base styles
+ */
+@mixin input-base {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-family: $base-font-family;
+    font-size: 1rem;
+    line-height: $base-line-height;
+    color: $text-color;
+    background-color: $white;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius-md;
+    @include transition(border-color, box-shadow);
+    
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+}
+
+/* ==================== UTILITIES ==================== */
+
+/**
+ * Clear floats
+ */
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+/**
+ * Visually hidden but accessible
+ */
+@mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/**
+ * High contrast focus (accessibility)
+ */
+@mixin focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+}

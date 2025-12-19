@@ -1,0 +1,16 @@
+/**
+ * WooCommerce Single Product Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.single-product {
+    .product-gallery {
+        margin-bottom: $spacing-2xl;
+    }
+    
+    .product-summary {
+        margin-left: $spacing-2xl;
+    }
+}

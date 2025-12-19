@@ -1,0 +1,21 @@
+/**
+ * Header Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.site-header {
+    background-color: $white;
+    border-bottom: $border-width solid $border-color;
+    position: relative;
+    z-index: 100;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    padding: 0 $container-padding;
+}

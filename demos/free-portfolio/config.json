@@ -1,0 +1,17 @@
+{
+  "slug": "free-portfolio",
+  "name": "Creative Portfolio",
+  "description": "Perfect for designers and photographers showcasing their creative work",
+  "demo_url": "https://demo.krtheme.com/portfolio",
+  "screenshot": "screenshot.png",
+  "is_pro": false,
+  "features": [
+    "Portfolio grid layouts",
+    "Project showcase",
+    "About page",
+    "Services list",
+    "Photography gallery",
+    "Contact section",
+    "Blog integration"
+  ]
+}

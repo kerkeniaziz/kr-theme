@@ -1,0 +1,29 @@
+/**
+ * Spacing Utilities
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+@each $size, $value in (
+    'xs': $spacing-xs,
+    'sm': $spacing-sm,
+    'md': $spacing-md,
+    'lg': $spacing-lg,
+    'xl': $spacing-xl,
+    '2xl': $spacing-2xl,
+    '3xl': $spacing-3xl,
+    '4xl': $spacing-4xl,
+) {
+    .m-#{$size} { margin: $value; }
+    .mt-#{$size} { margin-top: $value; }
+    .mb-#{$size} { margin-bottom: $value; }
+    .ml-#{$size} { margin-left: $value; }
+    .mr-#{$size} { margin-right: $value; }
+    
+    .p-#{$size} { padding: $value; }
+    .pt-#{$size} { padding-top: $value; }
+    .pb-#{$size} { padding-bottom: $value; }
+    .pl-#{$size} { padding-left: $value; }
+    .pr-#{$size} { padding-right: $value; }
+}

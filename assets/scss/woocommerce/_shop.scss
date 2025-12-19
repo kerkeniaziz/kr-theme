@@ -1,0 +1,14 @@
+/**
+ * WooCommerce Shop Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.woocommerce {
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: $spacing-2xl;
+    }
+}

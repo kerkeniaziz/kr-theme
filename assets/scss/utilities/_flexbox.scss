@@ -1,0 +1,15 @@
+/**
+ * Flexbox Utilities
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }

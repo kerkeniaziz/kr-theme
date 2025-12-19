@@ -1,0 +1,27 @@
+/**
+ * Pagination Component Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.pagination {
+    @include flex-center;
+    gap: $spacing-sm;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    a, span {
+        padding: 0.5rem 1rem;
+        border: $border-width solid $border-color;
+        border-radius: $border-radius-md;
+        @include transition(all);
+        
+        &:hover {
+            background-color: $primary-color;
+            color: $white;
+            border-color: $primary-color;
+        }
+    }
+}

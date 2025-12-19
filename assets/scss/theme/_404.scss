@@ -1,0 +1,16 @@
+/**
+ * 404 Page Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.error-404 {
+    padding: $spacing-4xl 0;
+    text-align: center;
+    
+    .page-title {
+        font-size: 4rem;
+        color: $primary-color;
+    }
+}

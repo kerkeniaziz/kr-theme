@@ -1,0 +1,16 @@
+/**
+ * Display Utilities
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.d-none { display: none; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-block { display: block; }
+
+@include media-query('md') {
+    .d-md-none { display: none; }
+    .d-md-block { display: block; }
+}

@@ -1,0 +1,35 @@
+/**
+ * Card Component Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.card {
+    background-color: $white;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius-lg;
+    @include box-shadow('md');
+    overflow: hidden;
+    @include transition(box-shadow);
+    
+    &:hover {
+        @include box-shadow('lg');
+    }
+}
+
+.card-header {
+    padding: $spacing-lg;
+    border-bottom: $border-width solid $border-color;
+    background-color: $background-color;
+}
+
+.card-body {
+    padding: $spacing-lg;
+}
+
+.card-footer {
+    padding: $spacing-lg;
+    border-top: $border-width solid $border-color;
+    background-color: $background-color;
+}

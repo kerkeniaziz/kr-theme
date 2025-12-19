@@ -1,0 +1,57 @@
+/**
+ * KR Theme Main SCSS File
+ * Imports all SCSS partials in correct order
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+/* ==================== ABSTRACTS ==================== */
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+/* ==================== VENDOR ==================== */
+@import 'vendor/normalize';
+
+/* ==================== LAYOUT ==================== */
+@import 'layout/base';
+@import 'layout/typography';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/sidebar';
+
+/* ==================== COMPONENTS ==================== */
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/modals';
+@import 'components/pagination';
+@import 'components/breadcrumbs';
+@import 'components/cards';
+
+/* ==================== THEME SPECIFIC ==================== */
+@import 'theme/home';
+@import 'theme/blog';
+@import 'theme/pages';
+@import 'theme/single';
+@import 'theme/archive';
+@import 'theme/search';
+@import 'theme/404';
+
+/* ==================== WOOCOMMERCE ==================== */
+@import 'woocommerce/shop';
+@import 'woocommerce/single-product';
+@import 'woocommerce/cart';
+@import 'woocommerce/checkout';
+
+/* ==================== ELEMENTOR ==================== */
+@import 'elementor/widgets';
+@import 'elementor/sections';
+
+/* ==================== UTILITIES ==================== */
+@import 'utilities/spacing';
+@import 'utilities/colors';
+@import 'utilities/display';
+@import 'utilities/flexbox';
+@import 'utilities/responsive';

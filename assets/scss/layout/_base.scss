@@ -1,0 +1,218 @@
+/**
+ * Base Layout Styles
+ * Global styles and resets
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: $base-font-size;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $text-color;
+    background-color: $white;
+    margin: 0;
+    padding: 0;
+    @include smooth-text;
+}
+
+/* ==================== HEADINGS ==================== */
+
+h1, h2, h3, h4, h5, h6,
+.heading {
+    font-family: $heading-font-family;
+    color: $heading-color;
+    font-weight: $font-weight-bold;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+}
+
+h1, .h1 { font-size: $h1-font-size; }
+h2, .h2 { font-size: $h2-font-size; }
+h3, .h3 { font-size: $h3-font-size; }
+h4, .h4 { font-size: $h4-font-size; }
+h5, .h5 { font-size: $h5-font-size; }
+h6, .h6 { font-size: $h6-font-size; }
+
+/* ==================== PARAGRAPHS & TEXT ==================== */
+
+p {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+}
+
+small,
+.small {
+    font-size: 0.875rem;
+}
+
+strong,
+.font-weight-bold {
+    font-weight: $font-weight-bold;
+}
+
+em,
+.font-italic {
+    font-style: italic;
+}
+
+/* ==================== LINKS ==================== */
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+    @include transition(color);
+    
+    &:hover {
+        color: $primary-dark;
+        text-decoration: underline;
+    }
+    
+    &:focus {
+        @include focus-visible;
+    }
+}
+
+/* ==================== LISTS ==================== */
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+dt {
+    font-weight: $font-weight-bold;
+}
+
+dd {
+    margin-left: 0;
+    margin-bottom: $spacing-md;
+}
+
+/* ==================== CODES ==================== */
+
+code,
+pre {
+    font-family: $mono-font-family;
+    background-color: $background-color;
+    padding: 0.25rem 0.5rem;
+    border-radius: $border-radius-sm;
+    font-size: 0.875em;
+}
+
+pre {
+    display: block;
+    padding: $spacing-md;
+    margin-bottom: $spacing-md;
+    overflow-x: auto;
+    
+    code {
+        padding: 0;
+        background-color: transparent;
+    }
+}
+
+/* ==================== IMAGES & MEDIA ==================== */
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+figure {
+    margin: 0 0 $spacing-lg 0;
+}
+
+figcaption {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin-top: 0.5rem;
+}
+
+/* ==================== BLOCKQUOTE ==================== */
+
+blockquote {
+    margin: $spacing-lg 0;
+    padding-left: $spacing-lg;
+    border-left: 4px solid $primary-color;
+    color: $text-secondary;
+    font-style: italic;
+}
+
+/* ==================== HR ==================== */
+
+hr {
+    margin: $spacing-lg 0;
+    border: none;
+    border-top: $border-width solid $border-color;
+}
+
+/* ==================== TABLES ==================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: $spacing-lg;
+}
+
+th,
+td {
+    padding: $spacing-md;
+    text-align: left;
+    border-bottom: $border-width solid $border-color;
+}
+
+th {
+    background-color: $background-color;
+    font-weight: $font-weight-bold;
+    color: $heading-color;
+}
+
+/* ==================== CONTAINER ==================== */
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $container-padding;
+    padding-right: $container-padding;
+    
+    @include media-query('sm') {
+        max-width: $container-width-sm;
+    }
+    
+    @include media-query('md') {
+        max-width: $container-width-md;
+    }
+    
+    @include media-query('lg') {
+        max-width: $container-width-lg;
+    }
+    
+    @include media-query('xl') {
+        max-width: $container-width-xl;
+    }
+    
+    @include media-query('2xl') {
+        max-width: $container-width-2xl;
+    }
+}

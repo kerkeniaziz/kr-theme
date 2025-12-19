@@ -1,0 +1,22 @@
+/**
+ * Form Component Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+textarea,
+select {
+    @include input-base;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: $font-weight-medium;
+    color: $text-color;
+}

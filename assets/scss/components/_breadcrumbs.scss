@@ -1,0 +1,27 @@
+/**
+ * Breadcrumbs Component Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.breadcrumbs {
+    display: flex;
+    gap: $spacing-sm;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin-bottom: $spacing-lg;
+}
+
+.breadcrumb-item {
+    &:after {
+        content: '/';
+        margin-left: $spacing-sm;
+        color: $text-tertiary;
+    }
+    
+    &:last-child:after {
+        content: '';
+        margin-left: 0;
+    }
+}

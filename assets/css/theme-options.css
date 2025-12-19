@@ -1,7 +1,31 @@
 /**
  * KR Theme Options - Frontend Styles
  * These styles handle layout styles and other theme option-based styling
+ * Generated from Theme Options - Redux Framework
+ * 
+ * @package KR_Theme
+ * @since 1.4.0
  */
+
+/* ======================= CSS VARIABLES DEFAULTS ======================= */
+
+:root {
+	--kr-primary-color: #2563eb;
+	--kr-text-color: #1f2937;
+	--kr-text-secondary: #6b7280;
+	--kr-text-tertiary: #d1d5db;
+	--kr-heading-color: #111827;
+	--kr-link-color: #2563eb;
+	--kr-link-hover: #1d4ed8;
+	--kr-link-visited: #6366f1;
+	--kr-link-active: #1d4ed8;
+	--kr-gradient-color-1: #ff869f;
+	--kr-gradient-color-2: #fa988a;
+	--kr-gradient-color-3: #f19a73;
+	--kr-gradient-color-4: #ffd0b1;
+	--kr-gradient-heading-1: #b1f1b3;
+	--kr-gradient-heading-2: #f3eec2;
+}
 
 /* ======================= LAYOUT STYLES ======================= */
 
@@ -10,7 +34,8 @@ body.kr-layout-wide {
 	width: 100%;
 }
 
-body.kr-layout-wide .container {
+body.kr-layout-wide .container,
+body.kr-layout-wide .site-content {
 	max-width: 1400px;
 	margin: 0 auto;
 }
@@ -40,6 +65,7 @@ body.kr-layout-float .kr-float-layout {
 
 header.site-header {
 	transition: all 0.3s ease;
+	z-index: 999;
 }
 
 header.site-header.kr-header-transparent {
@@ -56,8 +82,52 @@ header.site-header.kr-header-transparent.kr-header-light {
 }
 
 header.site-header.kr-sticky-active {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
 	background-color: rgba(255, 255, 255, 0.98);
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+	animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+body.header-sticky-active {
+	padding-top: 80px;
+}
+
+/* ======================= PAGE & POST TITLE STYLES ======================= */
+
+.kr-page-title,
+.kr-post-title {
+	background-color: #f5f5f5;
+	padding: 40px 0;
+	margin-bottom: 40px;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.kr-page-title h1,
+.kr-post-title h1 {
+	font-size: 36px;
+	font-weight: 700;
+	color: var(--kr-heading-color, #111827);
+	margin: 0;
+}
+
+.kr-page-title-wrapper,
+.kr-post-title-wrapper {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 20px;
 }
 
 /* ======================= PRELOADER STYLES ======================= */
@@ -72,6 +142,15 @@ header.site-header.kr-sticky-active {
 	align-items: center;
 	justify-content: center;
 	z-index: 9999;
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.5s ease;
+}
+
+.kr-preloader.loaded {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
 }
 
 .kr-preloader-spinner {
@@ -101,7 +180,19 @@ header.site-header.kr-sticky-active {
 	visibility: hidden;
 	transition: all 0.3s ease;
 	z-index: 999;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	background-color: var(--kr-primary-color, #2563eb);
+	color: #ffffff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+	padding: 0;
+	border: none;
+	font-size: 0;
+	line-height: 1;
+}
+
+#kr-back-to-top svg {
+	width: 20px;
+	height: 20px;
+	fill: currentColor;
 }
 
 #kr-back-to-top.visible {
@@ -110,24 +201,98 @@ header.site-header.kr-sticky-active {
 }
 
 #kr-back-to-top:hover {
+	background-color: var(--kr-link-hover, #1d4ed8);
 	transform: translateY(-5px);
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-#kr-back-to-top svg {
-	width: 20px;
-	height: 20px;
+/* ======================= TEXT & COLOR UTILITIES ======================= */
+
+.text-primary {
+	color: var(--kr-primary-color) !important;
 }
 
-/* ======================= RESPONSIVE ======================= */
+.text-muted {
+	color: var(--kr-text-secondary) !important;
+}
+
+.text-light {
+	color: var(--kr-text-tertiary) !important;
+}
+
+.bg-primary {
+	background-color: var(--kr-primary-color) !important;
+	color: #ffffff;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 6px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.btn-primary {
+	background-color: var(--kr-primary-color, #2563eb);
+	color: #ffffff;
+}
+
+.btn-primary:hover {
+	background-color: var(--kr-link-hover, #1d4ed8);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ======================= GRADIENT UTILITIES ======================= */
+
+.gradient-1 {
+	background: linear-gradient(135deg, var(--kr-gradient-color-1), var(--kr-gradient-color-2));
+}
+
+.gradient-2 {
+	background: linear-gradient(135deg, var(--kr-gradient-color-3), var(--kr-gradient-color-4));
+}
+
+.gradient-heading {
+	background: linear-gradient(135deg, var(--kr-gradient-heading-1), var(--kr-gradient-heading-2));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	display: inline-block;
+}
+
+/* ======================= WOOCOMMERCE STYLES ======================= */
+
+.woocommerce span.onsale {
+	background-color: var(--kr-primary-color, #2563eb) !important;
+	color: white;
+	font-weight: 600;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 5px 15px;
+	border-radius: 50%;
+}
+
+.woocommerce .product {
+	transition: all 0.3s ease;
+}
+
+.woocommerce .product:hover {
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================= RESPONSIVE STYLES ======================= */
 
 @media (max-width: 768px) {
-	body.kr-layout-boxed .site-wrapper {
-		box-shadow: none;
-	}
-
-	body.kr-layout-float .kr-float-layout {
-		padding: 0 15px;
+	.kr-page-title h1,
+	.kr-post-title h1 {
+		font-size: 28px;
 	}
 
 	#kr-back-to-top {
@@ -135,5 +300,65 @@ header.site-header.kr-sticky-active {
 		right: 20px;
 		width: 36px;
 		height: 36px;
+	}
+
+	#kr-back-to-top svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	body.kr-layout-float .site-wrapper,
+	body.kr-layout-float .kr-float-layout {
+		padding: 0 15px;
+	}
+
+	.btn {
+		padding: 8px 15px;
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 480px) {
+	.kr-page-title,
+	.kr-post-title {
+		padding: 30px 0;
+		margin-bottom: 30px;
+	}
+
+	.kr-page-title h1,
+	.kr-post-title h1 {
+		font-size: 24px;
+	}
+
+	#kr-back-to-top {
+		bottom: 15px;
+		right: 15px;
+		width: 32px;
+		height: 32px;
+	}
+}
+
+/* ======================= ACCESSIBILITY STYLES ======================= */
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ======================= PRINT STYLES ======================= */
+
+@media print {
+	#kr-back-to-top {
+		display: none;
+	}
+
+	.kr-preloader {
+		display: none;
 	}
 }

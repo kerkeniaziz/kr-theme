@@ -1,0 +1,21 @@
+/**
+ * Blog Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.blog-post {
+    margin-bottom: $spacing-3xl;
+}
+
+.post-title {
+    font-size: $h2-font-size;
+    margin-bottom: $spacing-md;
+}
+
+.post-meta {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin-bottom: $spacing-md;
+}

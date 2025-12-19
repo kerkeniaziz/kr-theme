@@ -1,0 +1,96 @@
+/**
+ * SCSS Functions
+ * Custom functions used in SCSS
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+/**
+ * Strip unit from a value
+ * Usage: strip-unit(16px) => 16
+ */
+@function strip-unit($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+/**
+ * Convert px to rem
+ * Usage: to-rem(16px) => 1rem
+ */
+@function to-rem($value) {
+    @if type-of($value) == 'number' {
+        $unitless: strip-unit($value);
+        @return ($unitless / 16) * 1rem;
+    }
+    @return $value;
+}
+
+/**
+ * Convert px to em
+ * Usage: to-em(16px, 16px) => 1em
+ */
+@function to-em($value, $context: 16px) {
+    @if type-of($value) == 'number' and type-of($context) == 'number' {
+        $unitless-value: strip-unit($value);
+        $unitless-context: strip-unit($context);
+        @return ($unitless-value / $unitless-context) * 1em;
+    }
+    @return $value;
+}
+
+/**
+ * Color luminance for text contrast
+ * Returns whether to use light or dark text
+ */
+@function color-luminance($color) {
+    $colors: ('red': red-component($color), 'green': green-component($color), 'blue': blue-component($color));
+    
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+    
+    @return (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+}
+
+/**
+ * Get contrast color
+ * Returns white or black based on background color
+ */
+@function contrast-color($color) {
+    @if (color-luminance($color) > 186) {
+        @return #333333;
+    } @else {
+        @return #ffffff;
+    }
+}
+
+/**
+ * Scale a value
+ * Usage: scale-value(16px, 1.5) => 24px
+ */
+@function scale-value($value, $scale) {
+    @if type-of($value) == 'number' {
+        @return $value * $scale;
+    }
+    @return $value;
+}
+
+/**
+ * Get spacing value by key
+ * Usage: get-spacing('md') => 1rem
+ */
+@function get-spacing($key) {
+    $spacings: (
+        'xs': $spacing-xs,
+        'sm': $spacing-sm,
+        'md': $spacing-md,
+        'lg': $spacing-lg,
+        'xl': $spacing-xl,
+        '2xl': $spacing-2xl,
+        '3xl': $spacing-3xl,
+        '4xl': $spacing-4xl,
+    );
+    
+    @return map-get($spacings, $key);
+}

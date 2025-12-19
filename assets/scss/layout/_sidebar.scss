@@ -1,0 +1,14 @@
+/**
+ * Sidebar Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.sidebar {
+    width: $sidebar-width;
+    
+    @include media-query('md') {
+        width: 100%;
+    }
+}

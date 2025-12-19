@@ -1,0 +1,14 @@
+/**
+ * Archive Styles
+ *
+ * @package KR_Theme
+ * @since 1.4.0
+ */
+
+.archive {
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: $spacing-2xl;
+    }
+}

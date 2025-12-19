@@ -1,0 +1,17 @@
+{
+  "slug": "free-business",
+  "name": "Professional Business",
+  "description": "A clean and professional business website with services section, portfolio, and contact form",
+  "demo_url": "https://demo.krtheme.com/business",
+  "screenshot": "screenshot.png",
+  "is_pro": false,
+  "features": [
+    "Modern homepage",
+    "Services showcase",
+    "Portfolio gallery",
+    "Team section",
+    "Testimonials",
+    "Contact form",
+    "Blog section"
+  ]
+}

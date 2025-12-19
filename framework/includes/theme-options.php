@@ -25,7 +25,7 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-			if ( ! class_exists( 'ReduxFramework' ) ) {
+			if ( ! class_exists( 'KRReduxFramework' ) ) {
 				return;
 			}
 
@@ -42,12 +42,28 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 			// Create sections and fields
 			$this->setSections();
 
+			// If Redux is running as a plugin, this will remove the demo notice and links
+			add_action( 'init', array( $this, 'remove_demo' ) );
+
 			if ( ! isset( $this->args['opt_name'] ) ) {
 				return;
 			}
 
 			// Initialize Redux
-			$this->ReduxFramework = new ReduxFramework( $this->sections, $this->args );
+			$this->ReduxFramework = new KRReduxFramework( $this->sections, $this->args );
+		}
+
+		/**
+		 * Remove Demo Notice
+		 * 
+		 * If Redux is running as a plugin, this will remove the demo notice and links
+		 */
+		public function remove_demo() {
+			// Used to hide the demo mode link from the plugin page. Only used when Redux is a plugin.
+			if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
+				// Used to hide the activation notice informing users of the demo panel. Only used when Redux is a plugin.
+				remove_action( 'admin_notices', array( ReduxFrameworkPlugin::instance(), 'admin_notices' ) );
+			}
 		}
 
 		/**
@@ -925,6 +941,17 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 						),
 					),
 				);
+			}
 		}
 	}
+}
+
+// Instantiate the Redux Framework configuration
+if ( ! function_exists( 'kr_init_theme_options_redux' ) ) {
+	function kr_init_theme_options_redux() {
+		if ( class_exists( 'KRReduxFramework' ) ) {
+			new Redux_Framework_KR_Theme_Options();
+		}
+	}
+	add_action( 'redux/construct', 'kr_init_theme_options_redux' );
 }
