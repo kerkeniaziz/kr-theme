@@ -72,7 +72,7 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 		public function setArguments() {
 			$this->args = array(
 				'opt_name'                  => 'kr_theme_options',
-				'display_name'              => 'KR Theme Options',
+				'display_name'              => 'Kr Theme Options',
 				'display_version'           => '1.4.0',
 				'menu_type'                 => 'menu',
 				'allow_admin_notes'         => false,
@@ -191,17 +191,18 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 						'title'    => esc_html__( 'Background Pattern', 'kr-theme' ),
 						'subtitle' => esc_html__( 'Body background pattern (Use only for Boxed layout style)', 'kr-theme' ),
 						'options'  => array(
-							'pattern1' => array(
-								'alt'   => esc_html__( 'Pattern 1', 'kr-theme' ),
-								'title' => esc_html__( 'Pattern 1', 'kr-theme' ),
-								'img'   => get_template_directory_uri() . '/assets/images/pattern1.png'
-							),
-							'pattern2' => array(
-								'alt'   => esc_html__( 'Pattern 2', 'kr-theme' ),
-								'title' => esc_html__( 'Pattern 2', 'kr-theme' ),
-								'img'   => get_template_directory_uri() . '/assets/images/pattern2.png'
-							),
-						),
+						'pattern-1.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-1.png'),
+						'pattern-2.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-2.png'),
+						'pattern-3.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-3.png'),
+						'pattern-4.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-4.png'),
+						'pattern-5.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-5.png'),
+						'pattern-6.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-6.png'),
+						'pattern-7.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-7.png'),
+						'pattern-8.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-8.png'),
+						'pattern-9.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-9.png'),
+						'pattern-10.png' => array('title' => '', 'img' => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/pattern-10.png'),
+					),
+					'default'  => 'pattern-1.png',
 						'required' => array( array( 'kr_layout_style', '=', 'boxed' ), array( 'kr_body_background_mode', '=', 'pattern' ) ),
 					),
 
@@ -666,12 +667,12 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 							'none'  => array(
 								'alt'   => esc_html__( 'None', 'kr-theme' ),
 								'title' => esc_html__( 'No Sidebar', 'kr-theme' ),
-								'img'   => get_template_directory_uri() . '/assets/images/sidebar-none.png'
-							),
-							'right' => array(
-								'alt'   => esc_html__( 'Right', 'kr-theme' ),
-								'title' => esc_html__( 'Right Sidebar', 'kr-theme' ),
-								'img'   => get_template_directory_uri() . '/assets/images/sidebar-right.png'
+							'img'   => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/sidebar-none.png'
+						),
+						'right' => array(
+							'alt'   => esc_html__( 'Right', 'kr-theme' ),
+							'title' => esc_html__( 'Right Sidebar', 'kr-theme' ),
+							'img'   => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/sidebar-right.png'
 							),
 						),
 						'default'  => 'none',
@@ -874,17 +875,17 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 								'none'  => array(
 									'alt'   => esc_html__( 'None', 'kr-theme' ),
 									'title' => esc_html__( 'No Sidebar', 'kr-theme' ),
-									'img'   => get_template_directory_uri() . '/assets/images/sidebar-none.png'
-								),
-								'left'  => array(
-									'alt'   => esc_html__( 'Left', 'kr-theme' ),
-									'title' => esc_html__( 'Left Sidebar', 'kr-theme' ),
-									'img'   => get_template_directory_uri() . '/assets/images/sidebar-left.png'
-								),
-								'right' => array(
-									'alt'   => esc_html__( 'Right', 'kr-theme' ),
-									'title' => esc_html__( 'Right Sidebar', 'kr-theme' ),
-									'img'   => get_template_directory_uri() . '/assets/images/sidebar-right.png'
+								'img'   => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/sidebar-none.png'
+							),
+							'left'  => array(
+								'alt'   => esc_html__( 'Left', 'kr-theme' ),
+								'title' => esc_html__( 'Left Sidebar', 'kr-theme' ),
+								'img'   => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/sidebar-left.png'
+							),
+							'right' => array(
+								'alt'   => esc_html__( 'Right', 'kr-theme' ),
+								'title' => esc_html__( 'Right Sidebar', 'kr-theme' ),
+								'img'   => get_template_directory_uri() . '/framework/admin-assets/images/theme-options/sidebar-right.png'
 								),
 							),
 							'default'  => 'left',
@@ -944,14 +945,7 @@ if ( ! class_exists( 'Redux_Framework_KR_Theme_Options' ) ) {
 			}
 		}
 	}
-}
 
-// Instantiate the Redux Framework configuration
-if ( ! function_exists( 'kr_init_theme_options_redux' ) ) {
-	function kr_init_theme_options_redux() {
-		if ( class_exists( 'KRReduxFramework' ) ) {
-			new Redux_Framework_KR_Theme_Options();
-		}
-	}
-	add_action( 'redux/construct', 'kr_init_theme_options_redux' );
+	// global $reduxConfig;
+	$reduxConfig = new Redux_Framework_KR_Theme_Options();
 }
